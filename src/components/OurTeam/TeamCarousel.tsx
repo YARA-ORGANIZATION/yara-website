@@ -9,7 +9,12 @@ const teamMembers = [
    {
       name: "Nana Akua Acheampomaa Atuahene",
       role: "Program & Partnership Manager",
-      description: "Nana Akua Acheampomaa Atuahene is a Programs and Partnerships Manager with over seven years of experience in research-driven program development, funding acquisition, and managing strategic partnerships. Passionate about youth empowerment, she has worked extensively in business development, technology, and sustainability, leading initiatives that equip young Africans with the skills and resources needed to thrive in academic, entrepreneurial and professional spaces.",
+      description: `Nana Akua Acheampomaa Atuahene is a Programs and Partnerships Manager with over seven years of experience in research-driven program development, funding acquisition, and managing strategic partnerships. Passionate about youth empowerment, she has worked extensively in business development, technology, and sustainability, leading initiatives that equip young Africans with the skills and resources needed to thrive in academic, entrepreneurial and professional spaces.  \n\n
+      
+      Her expertise in program management, research, and mentorship is evident from her work with organizations like the Pan-African Tech Foundation (UK), where she mobilized millions in funding for tech and blockchain initiatives, creating training programs that empowered youth across Africa. As Director of Business Development and Partnerships at GrandHedge International (Ghana), she led sustainability-focused programs, developed research-backed training manuals, and secured  funding for climate action and gender initiatives.
+Nana’s background in research is further demonstrated by her contributions to the Northern Food Index Research at Social Innovation Africa (UK/Ghana), where she played a key role in policy development and impact assessment. She has also designed and led capacity-building workshops, including mentorship programs with Mpesa Foundation in collaboration with Mastercard Foundation (Kenya) and The Noire Space (UK), where she mentored young students in research, business development, and entrepreneurship.
+As a dedicated advocate for youth-led initiatives, she continues to drive programs that equip African youth with the pre-requisite tools needed for transformative development on the African continent
+`,
       image: "/images/akua.jpg",
    },
    {
@@ -30,7 +35,9 @@ Isaac is obsessively solutions-oriented and, and is passionate about innovating 
    {
       name: "Isaac Baiden",
       role: "Cofounder & Research Director",
-      description: "A medical doctor and a dedicated PhD candidate in the Department of Physiology at Wayne State University, with a strong research focus on cardiorenal physiology, hypertension, and diuretic resistance.",
+      description: `Dr. Isaac Baiden is a medical doctor and a PhD candidate in the Department of Physiology at Wayne State University, with a strong research focus on cardiorenal physiology, hypertension, and diuretic resistance. His work in the Ortiz Lab at Henry Ford Health System explores the intricate mechanisms of kidney and cardiovascular interactions, particularly in the context of heart failure.
+
+His research excellence has been recognized with multiple prestigious awards, including the American Heart Association (AHA) Kidney in Cardiovascular Disease (KCVD) New Investigator Award, the David and Barbara Pieper Award for Outstanding Graduate Student, Marion Banhart Outstanding Graduate Student Award, and the American Physiological Society’s Top Predoctoral Poster Presentation Award. He is also a recipient of the AHA Predoctoral Fellowship, a grant he has received to study loop diuretic resistance in heart failure.`,
       image: "/images/isaac.jpg",
    },
    {
