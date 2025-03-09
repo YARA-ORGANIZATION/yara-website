@@ -43,19 +43,19 @@ export default function Footer() {
             <h3 className="text-2xl md:text-4xl font-bold mb-4">Social Media</h3>
             <ul className="space-y-2 font-roman text-lg md:text-2xl">
               <li>
-                <a href="https://www.linkedin.com/company/young-africans-research-academy/" target="_blank" rel="noopener noreferrer" className="sm:flex hover:text-purple-600 transition">
+                <a href="https://www.linkedin.com/company/yararesearch/" target="_blank" rel="noopener noreferrer" className="sm:flex hover:text-purple-600 transition">
                   <FontAwesomeIcon icon={faLinkedin} className="mr-2 w-8 h-8 hidden sm:block" />
                   LinkedIn
                 </a>
               </li>
               <li>
-                <a href="https://www.instagram.com/youngafricansresearchacademy/" target="_blank" rel="noopener noreferrer" className="sm:flex hover:text-purple-600 transition">
+                <a href="https://www.instagram.com/yara_research/" target="_blank" rel="noopener noreferrer" className="sm:flex hover:text-purple-600 transition">
                   <FontAwesomeIcon icon={faInstagram} className="mr-2 w-8 h-8 hidden sm:block" />
                   Instagram
                 </a>
               </li>
               <li>
-                <a href="https://x.com/youngafric61575?s=21" target="_blank" rel="noopener noreferrer" className="sm:flex hover:text-purple-600 transition">
+                <a href="https://x.com/yara_research" target="_blank" rel="noopener noreferrer" className="sm:flex hover:text-purple-600 transition">
                   <FontAwesomeIcon icon={faXTwitter} className="mr-2 w-8 h-8 hidden sm:block" />
                   Twitter/X
                 </a>

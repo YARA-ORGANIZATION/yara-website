@@ -13,7 +13,7 @@ const WhyAfrica = () => {
                   <span className="z-10">Did you know?</span>
                </p>
                <p className="text-lg sm:text-xl md:text-2xl max-w-5xl px-2">
-                  Africa contributes less than <span className="font-medium">1% of global research output</span> despite being home to
+                  Africa contributes less than <span className="font-medium">2% of global research output</span> despite being home to
                   <span className="font-medium"> 17% of the world&apos;s population</span>. Without a strong research foundation, scientific
                   breakthroughs, innovation, and technological advancements will remain out of reach.
                </p>

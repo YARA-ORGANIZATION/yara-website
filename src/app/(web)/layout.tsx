@@ -49,7 +49,7 @@ const neue = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "YARA",
+  title: "YARA | Research Academy for Young Africans",
   description: "Nurturing the Next Generation of African Researchers",
 };
 

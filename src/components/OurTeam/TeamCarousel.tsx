@@ -19,17 +19,14 @@ As a dedicated advocate for youth-led initiatives, she continues to drive progra
    },
    {
       name: "Okai Ayea Peter",
-      role: "Programs Assistant",
+      role: "Programs Associate",
       description: "Okai Peter is a dedicated Community Builder passionate about empowering young minds across African communities through technology education and collaborative networks. As the Lead for PyClub GCTU, he creates safe spaces where students can connect, learn, and grow in emerging technologies. His work focuses on building Web3 ecosystems, fostering digital inclusion, and advocating for the next generation of African innovators. With experience in social media management and community organizing, Peter believes in the power of collective knowledge to transform communities and shape Africa's digital future",
       image: "/images/peter.jpg",
    },
    {
       name: "Isaac Aboah",
       role: "Cofounder & Executive Director",
-      description: `
-      Isaac is an entrepreneur and critical thinker at large. Isaac defines his life's mission as building prosperity at scale, especially for underprivileged people. 
-Isaac is obsessively solutions-oriented and, and is passionate about innovating pathways for education and skills development across. He is founder of Melo Technologies, AI-distribution based solution for manufactories, Festival Director the Green Film Festival, Creator of Africa’s leading thought-leadership podcast, Change Africa Podcast and board member of the Commonwealth Human Ecology Council.
-      `,
+      description: `Isaac is an entrepreneur and critical thinker at large. Isaac defines his life's mission as building prosperity at scale, especially for underprivileged people. Isaac is obsessively solutions-oriented and is passionate about innovating pathways for education and skills development across Africa. He is founder of Melo Technologies, AI-distribution based solution for manufacturers, Festival Director the Green Film Festival, Creator of Africa’s leading thought-leadership podcast, Change Africa Podcast and board member of the Commonwealth Human Ecology Council.`,
       image: "/images/ceo.jpg",
    },
    {
