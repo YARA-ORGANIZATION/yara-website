@@ -33,7 +33,7 @@ export default function Footer() {
           <div>
             <h3 className="text-2xl md:text-4xl font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2 font-roman text-lg md:text-2xl">
-              <li><Link href="/get-to-know-us" className="hover:text-purple-600 transition">About Us</Link></li>
+            <li><Link href="/get-to-know-us" className="hover:text-purple-600 transition">About Us</Link></li>
               <li><Link href="/fellowship-program" className="hover:text-purple-600 transition">Fellowship Program</Link></li>
               <li><Link href="/for-fellows" className="hover:text-purple-600 transition">How to Apply</Link></li>
             </ul>
@@ -55,7 +55,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="https://x.com/yara_research" target="_blank" rel="noopener noreferrer" className="sm:flex hover:text-purple-600 transition">
+              <a href="https://x.com/yara_research" target="_blank" rel="noopener noreferrer" className="sm:flex hover:text-purple-600 transition">
                   <FontAwesomeIcon icon={faXTwitter} className="mr-2 w-8 h-8 hidden sm:block" />
                   Twitter/X
                 </a>

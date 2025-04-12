@@ -45,6 +45,7 @@ His research excellence has been recognized with multiple prestigious awards, in
    },
 ];
 
+
 const TeamCarousel = () => {
    const [selectedIndex, setSelectedIndex] = useState(2);
    const [visibleMembers, setVisibleMembers] = useState<typeof teamMembers>([]);
@@ -120,7 +121,7 @@ const TeamCarousel = () => {
                      className={classNames(
                         "relative transition-all duration-300 grayscale flex-shrink-0",
                         {
-                           "grayscale-0 border-4 border-orange-500 p-1 sm:p-2 rounded-lg scale-110 sm:scale-125 md:scale-150":
+                           "grayscale-0 border-4 border-purple-600 p-1 sm:p-2 rounded-lg scale-110 sm:scale-125 md:scale-150":
                               teamMembers[selectedIndex].name === member.name,
                            "opacity-50": teamMembers[selectedIndex].name !== member.name,
                         }
