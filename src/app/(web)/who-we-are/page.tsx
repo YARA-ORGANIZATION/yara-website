@@ -76,7 +76,7 @@ const TeamCarousel = () => {
       const handleResize = () => {
          updateVisibleMembers();
       };
-
+//
       window.addEventListener('resize', handleResize);
 
       return () => {
