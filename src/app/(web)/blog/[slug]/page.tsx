@@ -62,7 +62,7 @@ const myPortableTextComponents = {
                   src={urlFor(data.titleImage).url()}
                   alt={`${data.title} - featured image`}
                   fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 95vw, 1000px"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 85vw, 1000px"
                   priority
                   className="object-cover"
                />
