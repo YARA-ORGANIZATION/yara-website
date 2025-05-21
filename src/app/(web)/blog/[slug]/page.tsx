@@ -64,7 +64,7 @@ const myPortableTextComponents = {
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 85vw, 1000px"
                   priority
-                  className="object-cover"
+                  className="object-fit"
                />
             </div>
          </header>
