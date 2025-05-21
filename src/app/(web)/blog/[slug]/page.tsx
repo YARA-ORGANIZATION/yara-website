@@ -34,8 +34,6 @@ const myPortableTextComponents = {
       <Image
         src={urlFor(value).url()}
         alt="Scholar's Image"
-        width={400}
-        height={400}
          className="float-left w-24 m-4 rounded"
       />
     ),
@@ -63,9 +61,9 @@ const myPortableTextComponents = {
                   src={urlFor(data.titleImage).url()}
                   alt={`${data.title} - featured image`}
                   fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1200px"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1000px"
                   priority
-                  className="object-fit"
+                  className="object-cover p-2"
                />
             </div>
          </header>
