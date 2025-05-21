@@ -26,6 +26,20 @@ export default async function BlogArticle({
 }) {
    const data: FullBlog = await getData(params.slug)
 
+ 
+
+const myPortableTextComponents = {
+  types: {
+    image: ({ value }: any) => (
+      <Image
+        src={urlFor(value).url()}
+        alt="Scholar's Image"
+        width={400}
+        height={400}
+      />
+    ),
+  },}
+
    return (
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 font-neue">
          <header className="max-w-4xl mx-auto mb-10">
@@ -57,7 +71,10 @@ export default async function BlogArticle({
 
          <article className="max-w-3xl mx-auto mt-12">
             <div className="prose prose-sm sm:prose md:prose-lg lg:prose-xl prose-slate mx-auto">
-               <PortableText value={data.content} />
+               {/* @ts-ignore */}
+               <PortableText value={data.content} 
+                  components={myPortableTextComponents}
+               />
             </div>
          </article>
       </main>

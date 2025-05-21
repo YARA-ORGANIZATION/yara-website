@@ -41,7 +41,8 @@ export default {
                type: 'block',
             },
             {
-               type: 'image'
+               type: 'image',
+               fields:[{type:'text', name:'alt', title:'Alt'}],
             }
          ],
       }
