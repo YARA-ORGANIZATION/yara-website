@@ -63,7 +63,7 @@ const myPortableTextComponents = {
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1000px"
                   priority
-                  className="object-cover p-2"
+                  className="object-cover p-5"
                />
             </div>
          </header>
