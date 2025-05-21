@@ -36,6 +36,7 @@ const myPortableTextComponents = {
         alt="Scholar's Image"
         width={400}
         height={400}
+         className="float-left w-24 m-4 rounded"
       />
     ),
   },}
