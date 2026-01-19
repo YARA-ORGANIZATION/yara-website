@@ -1,0 +1,29 @@
+npm verbose cli /usr/local/Cellar/node/24.6.0/bin/node /usr/local/bin/npm
+npm info using npm@11.5.1
+npm info using node@v24.6.0
+npm verbose title npm install
+npm verbose argv "install" "--loglevel" "verbose"
+npm verbose logfile logs-max:10 dir:/Users/nhyiraba_kofi/.npm/_logs/2026-01-19T13_49_37_317Z-
+npm verbose logfile /Users/nhyiraba_kofi/.npm/_logs/2026-01-19T13_49_37_317Z-debug-0.log
+npm verbose stack Error: ENOTEMPTY: directory not empty, rename '/Users/nhyiraba_kofi/Desktop/yara-website-main/node_modules/acorn' -> '/Users/nhyiraba_kofi/Desktop/yara-website-main/node_modules/.acorn-oEUvXZaJ'
+npm verbose stack     at async Object.rename (node:internal/fs/promises:787:10)
+npm verbose stack     at async moveFile (/usr/local/lib/node_modules/npm/node_modules/@npmcli/fs/lib/move-file.js:30:5)
+npm verbose stack     at async Promise.allSettled (index 85)
+npm verbose stack     at async [reifyPackages] (/usr/local/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/reify.js:332:11)
+npm verbose stack     at async Arborist.reify (/usr/local/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/reify.js:137:5)
+npm verbose stack     at async Install.exec (/usr/local/lib/node_modules/npm/lib/commands/install.js:150:5)
+npm verbose stack     at async Npm.exec (/usr/local/lib/node_modules/npm/lib/npm.js:208:9)
+npm verbose stack     at async module.exports (/usr/local/lib/node_modules/npm/lib/cli/entry.js:67:5)
+npm error code ENOTEMPTY
+npm error syscall rename
+npm error path /Users/nhyiraba_kofi/Desktop/yara-website-main/node_modules/acorn
+npm error dest /Users/nhyiraba_kofi/Desktop/yara-website-main/node_modules/.acorn-oEUvXZaJ
+npm error errno -66
+npm error ENOTEMPTY: directory not empty, rename '/Users/nhyiraba_kofi/Desktop/yara-website-main/node_modules/acorn' -> '/Users/nhyiraba_kofi/Desktop/yara-website-main/node_modules/.acorn-oEUvXZaJ'
+npm verbose cwd /Users/nhyiraba_kofi/Desktop/yara-website-main
+npm verbose os Darwin 24.6.0
+npm verbose node v24.6.0
+npm verbose npm  v11.5.1
+npm verbose exit -66
+npm verbose code -66
+npm error A complete log of this run can be found in: /Users/nhyiraba_kofi/.npm/_logs/2026-01-19T13_49_37_317Z-debug-0.log
