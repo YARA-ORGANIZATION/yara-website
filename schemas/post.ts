@@ -134,6 +134,14 @@ export default defineType({
       group: "meta",
       hidden: ({ document }) => document?.category !== "press",
     }),
+    defineField({
+      name: "featured",
+      title: "Feature on the Stories page",
+      type: "boolean",
+      group: "meta",
+      description: "Featured stories appear in the three-card row at the top of /stories (newest first).",
+      initialValue: false,
+    }),
     defineField({ name: "author", type: "string", group: "meta", description: "e.g. YARA Communications" }),
     defineField({
       name: "people",
