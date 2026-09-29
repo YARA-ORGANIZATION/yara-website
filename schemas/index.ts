@@ -1,5 +1,5 @@
-import blog from './blog'
-import newsAnnouncement from './newsAnnouncement'
-import whatsNew from './whatsNew'
+import post from "./post";
+import blog from "./legacy/blog";
+import newsAnnouncement from "./legacy/newsAnnouncement";
 
-export const schemaTypes = [blog, newsAnnouncement, whatsNew]
+export const schemaTypes = [post, blog, newsAnnouncement];

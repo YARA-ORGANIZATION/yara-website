@@ -1,16 +1,10 @@
-export const metadata = {
-   title: "YARA",
-   description: "Nurturing the Next Generation of African Researchers",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "YARA Studio",
+  robots: { index: false, follow: false },
 };
 
-export default function RootLayout({
-   children,
-}: {
-   children: React.ReactNode;
-}) {
-   return (
-      <html lang="en">
-         <body>{children}</body>
-      </html>
-   );
+export default function StudioLayout({ children }: { children: React.ReactNode }) {
+  return <div className="min-h-dvh">{children}</div>;
 }
