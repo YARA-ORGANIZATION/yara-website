@@ -1,1 +1,2 @@
-sanity
+# Only a standalone Studio folder at the repo root (if one is ever added), not src/sanity
+/sanity/
