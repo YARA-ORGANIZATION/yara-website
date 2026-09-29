@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Photo } from "@/components/Art";
 import Link from "next/link";
-import { ButtonLink, Card, Eyebrow, PageHero, Prose, Section } from "@/components/ui";
+import { ShieldCheck, Target, Users } from "lucide-react";
+import { ButtonLink, Card, Eyebrow, PageHero, Prose, Section, SectionHeading } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "About",
@@ -13,14 +14,17 @@ export const metadata: Metadata = {
 const values = [
   {
     title: "Rigour",
+    Icon: ShieldCheck,
     body: "We ask precise questions, use sound methods and communicate only what the evidence can support.",
   },
   {
     title: "Collaboration",
+    Icon: Users,
     body: "We work across disciplines, institutions and sectors, recognising that consequential research is strengthened by different forms of expertise.",
   },
   {
     title: "Impact",
+    Icon: Target,
     body: "We pursue research with a clear understanding of what it could change, whether through new knowledge, policy, technology, institutional practice or commercial application.",
   },
 ];
@@ -48,7 +52,10 @@ export default function AboutPage() {
         }
         aside={<Photo src="/images/brand/students-group.jpg" alt="Young African students smiling together" className="hidden aspect-[4/5] max-h-[28rem] lg:block" priority />}
       >
-        <ButtonLink href="/about/team" variant="primary">
+        <ButtonLink href="/programmes" variant="primary">
+          Explore Our Fellowships
+        </ButtonLink>
+        <ButtonLink href="/about/team" variant="outline" className="text-forest">
           Meet the team
         </ButtonLink>
         <ButtonLink href="/strategy" variant="outline" className="text-forest">
@@ -57,9 +64,14 @@ export default function AboutPage() {
       </PageHero>
 
       <Section tone="forest" labelledBy="mission">
-        <h2 id="mission" className="sr-only">
-          Mission and vision
-        </h2>
+        <SectionHeading
+          id="mission"
+          tone="light"
+          align="center"
+          eyebrow="Purpose & direction"
+          title="Our foundational architecture"
+          className="mb-10"
+        />
         <div className="grid gap-5 md:grid-cols-2">
           <Card tone="cream" className="ring-0">
             <Eyebrow className="mb-4">Our mission</Eyebrow>
@@ -79,15 +91,15 @@ export default function AboutPage() {
       </Section>
 
       <Section labelledBy="values">
-        <h2 id="values">
-          <Eyebrow>Our core values</Eyebrow>
-        </h2>
+        <SectionHeading id="values" align="center" eyebrow="How we work" title="Our Core Values" />
         <ul className="mt-12 grid gap-5 md:grid-cols-3">
-          {values.map((v, i) => (
-            <li key={v.title} className="rounded-[var(--radius-card)] bg-white p-7 ring-1 ring-line">
-              <span className="text-sm font-medium text-forest/60">0{i + 1}</span>
-              <h3 className="mt-4 text-2xl font-medium tracking-tight text-forest">{v.title}</h3>
-              <p className="mt-3 leading-relaxed text-ink/80">{v.body}</p>
+          {values.map(({ title, body, Icon }) => (
+            <li key={title} className="rounded-[var(--radius-card)] bg-white p-7 ring-1 ring-line">
+              <span aria-hidden className="flex size-11 items-center justify-center rounded-full bg-lime text-forest">
+                <Icon className="size-5" strokeWidth={1.75} />
+              </span>
+              <h3 className="mt-5 text-2xl font-medium tracking-tight text-forest">{title}</h3>
+              <p className="mt-3 leading-relaxed text-ink/80">{body}</p>
             </li>
           ))}
         </ul>

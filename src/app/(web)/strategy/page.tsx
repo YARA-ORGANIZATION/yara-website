@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { ArrowRight } from "lucide-react";
-import { Photo } from "@/components/Art";
-import { ArrowLink, Eyebrow, PageHero, Prose, Section, SectionHeading, cx } from "@/components/ui";
+import { ArrowRight, Check, Plus } from "lucide-react";
+import { ArrowLink, ButtonLink, Section, SectionHeading, cx } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "YARA 2031: Building Stronger Research Pathways",
@@ -326,57 +325,82 @@ const takePart = [
   },
 ];
 
-function MiniCard({ title, body, tone = "white" }: { title: string; body: string; tone?: "white" | "lime" | "forest" }) {
-  const tones = {
-    white: "bg-white ring-1 ring-line text-ink",
-    lime: "bg-lime text-forest-deep",
-    forest: "bg-forest text-white",
-  };
+const financing = [
+  "Multi-year philanthropic support",
+  "Research grants",
+  "Institutional partnerships",
+  "Corporate research collaboration",
+  "Capital for research translation",
+];
+
+function ReadMore({ children, tone = "light" }: { children: React.ReactNode; tone?: "light" | "dark" }) {
   return (
-    <li className={cx("rounded-[var(--radius-card)] p-6", tones[tone])}>
-      <h4 className={cx("text-lg font-medium tracking-tight", tone === "white" && "text-forest", tone === "forest" && "text-lime")}>
-        {title}
-      </h4>
-      <p className={cx("mt-2 leading-relaxed", tone === "forest" ? "text-white/80" : "opacity-85")}>{body}</p>
-    </li>
+    <details className="group mt-4">
+      <summary
+        className={cx(
+          "inline-flex cursor-pointer list-none items-center gap-1.5 text-sm font-medium [&::-webkit-details-marker]:hidden",
+          tone === "dark" ? "text-lime" : "text-forest",
+        )}
+      >
+        <Plus aria-hidden className="size-4 transition-transform group-open:rotate-45" />
+        <span className="group-open:hidden">Read more</span>
+        <span className="hidden group-open:inline">Show less</span>
+      </summary>
+      <div className={cx("mt-3 space-y-3 text-sm leading-relaxed", tone === "dark" ? "text-white/80" : "text-ink/75")}>
+        {children}
+      </div>
+    </details>
+  );
+}
+
+function Badge({ n }: { n: string | number }) {
+  return (
+    <span className="inline-flex size-8 items-center justify-center rounded-lg bg-lime text-sm font-semibold text-forest-deep">
+      {n}
+    </span>
   );
 }
 
 export default function StrategyPage() {
   return (
     <>
-      <PageHero
-        eyebrow="YARA 2031"
-        aside={<Photo src="/images/brand/leaf-map.jpg" alt="A map of the world made of green leaves" className="hidden aspect-[16/9] lg:block" priority />}
-        title={
-          <>
-            Building Stronger Research Pathways
-            <span className="mt-4 block text-2xl font-light text-ink italic md:text-3xl">
-              Our five-year strategy, 2027–2031
+      <header className="bg-cream pt-32 pb-16 md:pt-40 md:pb-24">
+        <div className="container-site grid gap-10 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <span className="inline-block rounded-full bg-lime px-3 py-1 text-xs font-semibold tracking-[0.14em] text-forest-deep uppercase">
+              YARA 2031
             </span>
-          </>
-        }
-        lede={
-          <>
-            <p>
+            <h1 className="mt-6 text-balance text-4xl font-medium leading-[1.05] tracking-tight text-forest sm:text-5xl md:text-6xl">
+              Building Stronger Research Pathways
+            </h1>
+            <p className="mt-4 text-2xl font-light text-ink italic">Our five-year strategy, 2027–2031</p>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink/85">
               YARA was founded around a simple idea: Africa needs stronger pathways through which promising researchers
               can develop rigorous work and carry that work further.
             </p>
-            <p className="text-base md:text-lg">
+          </div>
+          <div className="space-y-4 text-ink/80 lg:pt-16">
+            <p className="leading-relaxed">
               Over the next five years, we will build those pathways by developing research talent across Africa,
               sustaining focused work in artificial intelligence, climate and public health, building the data and
               technical capabilities those fields require, creating stronger routes from research to policy, innovation
               and commercialisation, and mobilising the partnerships and capital required to sustain this work across
               the continent.
             </p>
-            <p className="text-base md:text-lg">
+            <p className="leading-relaxed">
               Our ambition is for more African researchers to produce rigorous, locally grounded work, and for more of
               that work to contribute to better decisions, stronger institutions, new technologies and economic
               opportunity across Africa.
             </p>
-          </>
-        }
-      />
+            <div className="flex flex-wrap gap-3 pt-2">
+              <ButtonLink href="/research">Explore Research</ButtonLink>
+              <ButtonLink href="/opportunities" variant="lime">
+                See Opportunities
+              </ButtonLink>
+            </div>
+          </div>
+        </div>
+      </header>
 
       {/* FIVE OPPORTUNITIES */}
       <Section tone="forest" labelledBy="opportunities">
@@ -384,102 +408,98 @@ export default function StrategyPage() {
           id="opportunities"
           tone="light"
           eyebrow="Five opportunities shaping our next five years"
-          title="Five strategic opportunities"
+          title="Five Strategic Opportunities"
+          className="mb-10"
         />
-        <nav aria-label="Opportunities" className="mt-10 flex flex-wrap gap-2">
+        <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {opportunities.map((o) => (
-            <a
+            <li
               key={o.n}
-              href={`#opportunity-${o.n}`}
-              className="rounded-full border border-white/25 px-4 py-2 text-sm text-white/85 transition-colors hover:border-lime hover:text-lime"
+              id={`opportunity-${o.n}`}
+              className="flex flex-col rounded-[var(--radius-card)] bg-white p-6 text-ink"
             >
-              {o.n} {o.name}
-            </a>
-          ))}
-        </nav>
-      </Section>
-
-      {opportunities.map((o, i) => (
-        <Section
-          key={o.n}
-          id={`opportunity-${o.n}`}
-          tone={i % 2 === 0 ? "cream" : "white"}
-          labelledBy={`opp-${o.n}`}
-        >
-          <div className="grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
-            <div>
-              <p className="text-6xl font-medium tracking-tight text-lime [-webkit-text-stroke:1.5px_var(--color-forest)] md:text-7xl">
-                {o.n}
-              </p>
-              <h2 id={`opp-${o.n}`} className="mt-4 text-sm font-semibold tracking-[0.14em] text-forest uppercase">
-                {o.name}
-              </h2>
-              <p className="mt-4 text-balance text-2xl font-medium leading-snug tracking-tight text-ink md:text-3xl">
-                {o.lead}
-              </p>
-            </div>
-            <div>
-              <Prose>
-                {o.body.map((p) => (
-                  <p key={p}>{p}</p>
-                ))}
-                {o.areasIntro && <p>{o.areasIntro}</p>}
-              </Prose>
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-semibold text-forest/60">{o.n}</span>
+                <ArrowRight aria-hidden className="size-4 -rotate-45 text-forest/50" />
+              </div>
+              <h3 className="mt-3 text-xl font-medium tracking-tight text-forest">{o.name}</h3>
+              <p className="mt-2 leading-relaxed text-ink/80">{o.lead}</p>
               {o.areas && (
-                <ul className="mt-6 grid gap-4 md:grid-cols-3">
+                <ul className="mt-4 space-y-1.5 text-sm">
                   {o.areas.map((a) => (
-                    <MiniCard key={a.title} {...a} tone="lime" />
+                    <li key={a.title} className="flex gap-2">
+                      <span aria-hidden className="mt-2 size-1.5 shrink-0 rounded-full bg-forest" />
+                      {a.title}
+                    </li>
                   ))}
                 </ul>
               )}
-              {o.after && (
-                <Prose className="mt-6">
-                  {o.after.map((p) => (
+              <div className="flex-1">
+                <ReadMore>
+                  {o.body.map((p) => (
                     <p key={p}>{p}</p>
                   ))}
-                </Prose>
-              )}
-              <ArrowLink href={o.href} className="mt-8 text-forest">
+                  {o.areasIntro && <p>{o.areasIntro}</p>}
+                  {o.areas?.map((a) => (
+                    <p key={a.title}>
+                      <strong className="font-medium text-ink">{a.title}.</strong> {a.body}
+                    </p>
+                  ))}
+                  {o.after?.map((p) => (
+                    <p key={p}>{p}</p>
+                  ))}
+                </ReadMore>
+              </div>
+              <ArrowLink href={o.href} className="mt-5 text-sm text-forest">
                 Our response<span className="sr-only">: {o.name}</span>
               </ArrowLink>
-            </div>
-          </div>
-        </Section>
-      ))}
+            </li>
+          ))}
+        </ul>
+      </Section>
 
       {/* THEORY OF CHANGE */}
       <Section tone="lime" labelledBy="theory">
         <SectionHeading
           id="theory"
           eyebrow="Our theory of change"
-          title="YARA’s work follows a simple progression."
-          className="[&_h2]:text-forest-deep"
+          title="Theory of Change"
+          intro="YARA’s work follows a simple progression."
+          className="mb-10 [&_h2]:text-forest-deep"
         />
-        <ol className="mt-12 grid gap-4 md:grid-cols-3">
-          {stages.map((s, i) => (
-            <li key={s.title} className="relative rounded-[var(--radius-card)] bg-cream p-6">
-              <span className="text-sm font-medium text-forest/60">Step {i + 1}</span>
-              <h3 className="mt-2 text-xl font-medium tracking-tight text-forest">{s.title}</h3>
-              <p className="mt-2 leading-relaxed text-ink/80">{s.body}</p>
-              {i < stages.length - 1 && (
-                <ArrowRight aria-hidden className="absolute top-1/2 -right-4 z-10 hidden size-6 -translate-y-1/2 text-forest md:block" />
-              )}
+        <ol className="grid gap-3 rounded-[var(--radius-panel)] bg-white p-5 md:p-8 lg:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1.2fr_auto_1fr] lg:items-center">
+          {stages.map((st, i) => (
+            <li key={st.title} className="contents">
+              <div className="rounded-[var(--radius-card)] bg-cream p-5">
+                <span className="text-xs font-semibold tracking-[0.12em] text-forest/60 uppercase">Step {i + 1}</span>
+                <h3 className="mt-2 font-medium text-forest">{st.title}</h3>
+                <p className="mt-1 text-sm leading-relaxed text-ink/75">{st.body}</p>
+              </div>
+              <ArrowRight aria-hidden className="mx-auto size-5 rotate-90 text-forest lg:rotate-0" />
             </li>
           ))}
+          <li className="contents">
+            <div className="rounded-[var(--radius-card)] bg-lime-soft p-4">
+              <h3 className="text-xs font-semibold tracking-[0.12em] text-forest uppercase">Pathways</h3>
+              <ul className="mt-2 space-y-2">
+                {pathways.map((pw) => (
+                  <li key={pw.title} className="rounded-lg bg-white p-2.5">
+                    <p className="text-sm font-medium text-forest">{pw.title}</p>
+                    <p className="text-xs leading-snug text-ink/70">{pw.body}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <ArrowRight aria-hidden className="mx-auto size-5 rotate-90 text-forest lg:rotate-0" />
+          </li>
+          <li className="rounded-[var(--radius-card)] bg-forest p-5 text-white">
+            <h3 className="font-medium text-lime">Longer-term Change</h3>
+            <p className="mt-1 text-sm leading-relaxed text-white/85">
+              More African researchers are able to sustain serious research careers, and more African research
+              contributes to knowledge, decisions, technologies, institutions and solutions.
+            </p>
+          </li>
         </ol>
-        <h3 className="mt-12 text-sm font-semibold tracking-[0.14em] text-forest-deep uppercase">Pathways</h3>
-        <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {pathways.map((p) => (
-            <MiniCard key={p.title} {...p} tone="forest" />
-          ))}
-        </ul>
-        <div className="mt-4 rounded-[var(--radius-card)] bg-forest-deep p-7 text-white">
-          <h3 className="text-xl font-medium tracking-tight text-lime">Longer-term Change</h3>
-          <p className="mt-2 max-w-3xl text-lg leading-relaxed text-white/85">
-            More African researchers are able to sustain serious research careers, and more African research contributes
-            to knowledge, decisions, technologies, institutions and solutions.
-          </p>
-        </div>
       </Section>
 
       {/* HOW YARA IS GROWING */}
@@ -489,50 +509,59 @@ export default function StrategyPage() {
           eyebrow="How YARA is growing"
           title="Building more capability"
           intro="The next five years will require YARA to build capabilities that strengthen researchers and research across all three priority areas."
+          className="mb-10"
         />
-        <ul className="mt-12 grid gap-5 md:grid-cols-2">
-          {capabilities.map((c) => (
-            <li key={c.title} className="rounded-[var(--radius-card)] bg-white p-7 ring-1 ring-line">
-              <h3 className="text-xl font-medium tracking-tight text-forest">{c.title}</h3>
-              <div className="mt-3 space-y-3 leading-relaxed text-ink/80">
-                {c.body.map((p) => (
-                  <p key={p}>{p}</p>
-                ))}
-              </div>
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {capabilities.map((c, i) => (
+            <li key={c.title} className="flex flex-col rounded-[var(--radius-card)] bg-white p-6 ring-1 ring-line">
+              <Badge n={i + 1} />
+              <h3 className="mt-4 text-lg font-medium tracking-tight text-forest">{c.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink/80">{c.body[0]}</p>
+              {c.body.length > 1 && (
+                <ReadMore>
+                  {c.body.slice(1).map((p) => (
+                    <p key={p}>{p}</p>
+                  ))}
+                </ReadMore>
+              )}
             </li>
           ))}
         </ul>
-      </Section>
 
-      <Section tone="white" labelledBy="further">
-        <SectionHeading
-          id="further"
-          title="Taking our impact further"
-          intro={
-            <>
-              <p>YARA’s work should not stop when a research project is completed.</p>
-              <p className="mt-3">Over the next five years, we will build stronger routes through which good research can continue.</p>
-            </>
-          }
-        />
-        <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {impactRoutes.map((r) => (
-            <MiniCard key={r.title} {...r} tone="lime" />
-          ))}
-        </ul>
-        <p className="mt-8 max-w-3xl text-lg leading-relaxed text-ink/85">
-          During this period, YARA intends to establish a Research Incubator and a Research &amp; Translation Fund to
-          provide selected projects with continuation funding, technical support, partnerships and access to the
-          expertise required for their next stage.
-        </p>
-      </Section>
+        <div className="mt-20">
+          <SectionHeading
+            title="Taking our impact further"
+            intro={
+              <>
+                <p>YARA’s work should not stop when a research project is completed.</p>
+                <p className="mt-2">
+                  Over the next five years, we will build stronger routes through which good research can continue.
+                </p>
+              </>
+            }
+            className="mb-10"
+          />
+          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {impactRoutes.map((r, i) => (
+              <li key={r.title} className="rounded-[var(--radius-card)] bg-forest p-6 text-white">
+                <Badge n={i + 1} />
+                <h3 className="mt-4 text-lg font-medium tracking-tight text-lime">{r.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-white/80">{r.body}</p>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-8 max-w-3xl text-lg leading-relaxed text-ink/85">
+            During this period, YARA intends to establish a Research Incubator and a Research &amp; Translation Fund to
+            provide selected projects with continuation funding, technical support, partnerships and access to the
+            expertise required for their next stage.
+          </p>
+        </div>
 
-      <Section labelledBy="capacity">
-        <div className="grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
-          <h2 id="capacity" className="text-balance text-3xl font-medium leading-tight tracking-tight text-forest md:text-4xl">
+        <div className="mt-20 grid gap-8 rounded-[var(--radius-panel)] bg-white p-8 ring-1 ring-line md:p-12 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
+          <h2 className="text-balance text-2xl font-medium leading-tight tracking-tight text-forest md:text-3xl">
             Building the capacity to carry both forward
           </h2>
-          <Prose>
+          <div className="space-y-4 leading-relaxed text-ink/85">
             <p>Growing YARA’s research and its reach requires an institution capable of sustaining them.</p>
             <p>Over the next five years, YARA will strengthen the people, systems and partnerships behind the work.</p>
             <p>
@@ -544,18 +573,23 @@ export default function StrategyPage() {
               It also means investing in the digital, computational and physical infrastructure researchers need to work
               well.
             </p>
-          </Prose>
+          </div>
         </div>
       </Section>
 
       {/* TARGETS */}
-      <Section tone="forest" labelledBy="targets">
-        <SectionHeading id="targets" tone="light" title="What we intend to build by 2031" />
-        <ul className="mt-12 grid gap-px overflow-hidden rounded-[var(--radius-card)] bg-white/15 sm:grid-cols-2 lg:grid-cols-4">
+      <Section tone="lime" labelledBy="targets">
+        <SectionHeading
+          id="targets"
+          eyebrow="Our ambitions"
+          title="What We Intend to Build by 2031"
+          className="mb-10 [&_h2]:text-forest-deep"
+        />
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {targets.map((t) => (
-            <li key={t.label} className="bg-forest p-6">
-              <p className="text-4xl font-medium tracking-tight text-lime md:text-5xl">{t.n}</p>
-              <p className="mt-3 leading-snug text-white/80">{t.label}</p>
+            <li key={t.label} className="rounded-[var(--radius-card)] bg-white p-6">
+              <p className="text-4xl font-medium tracking-tight text-forest">{t.n}</p>
+              <p className="mt-2 text-sm leading-snug text-ink/75">{t.label}</p>
             </li>
           ))}
         </ul>
@@ -565,32 +599,43 @@ export default function StrategyPage() {
       <Section labelledBy="depth">
         <SectionHeading
           id="depth"
-          title="Building research depth"
+          eyebrow="Our research agenda"
+          title="Building Research Depth"
           intro="YARA’s research agenda will remain concentrated in three areas where stronger African research capacity can materially improve knowledge, decisions and institutions."
+          className="mb-10"
         />
-        <div className="mt-12 space-y-10">
+        <ul className="grid gap-5 md:grid-cols-3">
           {depth.map((d) => (
-            <div key={d.theme}>
-              <h3 className="text-2xl font-medium tracking-tight text-forest">{d.theme}</h3>
-              <ul className="mt-4 grid gap-4 md:grid-cols-3">
+            <li key={d.theme} className="rounded-[var(--radius-card)] bg-white p-7 ring-1 ring-line">
+              <h3 className="text-xl font-medium tracking-tight text-forest">{d.theme}</h3>
+              <ul className="mt-4 space-y-4">
                 {d.areas.map((a) => (
-                  <MiniCard key={a.title} {...a} />
+                  <li key={a.title} className="flex gap-3">
+                    <span aria-hidden className="mt-2 size-1.5 shrink-0 rounded-full bg-forest" />
+                    <div>
+                      <p className="font-medium text-ink">{a.title}</p>
+                      <p className="text-sm leading-relaxed text-ink/70">{a.body}</p>
+                    </div>
+                  </li>
                 ))}
               </ul>
-            </div>
+            </li>
           ))}
-        </div>
-        <div className="mt-14 rounded-[var(--radius-panel)] bg-forest p-8 text-white md:p-12">
-          <h3 className="text-3xl font-medium tracking-tight text-lime">Working across themes</h3>
-          <p className="mt-4 max-w-2xl text-lg text-white/85">
+        </ul>
+        <div className="mt-6 rounded-[var(--radius-panel)] bg-lime-soft p-8 md:p-10">
+          <h3 className="text-2xl font-medium tracking-tight text-forest">Working across themes</h3>
+          <p className="mt-3 max-w-2xl leading-relaxed text-ink/80">
             These areas should not operate as silos. Some of the most important research questions sit between them.
           </p>
-          <ul className="mt-8 grid gap-4 md:grid-cols-3">
+          <ul className="mt-6 grid gap-4 md:grid-cols-3">
             {crossThemes.map((c) => (
-              <MiniCard key={c.title} {...c} tone="lime" />
+              <li key={c.title} className="rounded-[var(--radius-card)] bg-white p-5">
+                <h4 className="font-medium text-forest">{c.title}</h4>
+                <p className="mt-1 text-sm leading-relaxed text-ink/75">{c.body}</p>
+              </li>
             ))}
           </ul>
-          <p className="mt-8 max-w-3xl text-lg leading-relaxed text-white/85">
+          <p className="mt-6 max-w-3xl leading-relaxed text-ink/80">
             Across all three areas, YARA’s task remains consistent: develop researchers, produce locally grounded
             evidence and create stronger pathways through which that evidence can be used.
           </p>
@@ -598,93 +643,106 @@ export default function StrategyPage() {
       </Section>
 
       {/* HOME FOR THE WORK */}
-      <Section tone="lime" labelledBy="home">
-        <div className="grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
+      <Section tone="forest" labelledBy="home">
+        <SectionHeading
+          id="home"
+          tone="light"
+          eyebrow="A home for the work"
+          title="Building a permanent home for African research talent."
+          intro={
+            <>
+              <p>By 2031, YARA aims to establish a permanent YARA Research &amp; Innovation Centre in Accra.</p>
+              <p className="mt-2">
+                The Centre would give researchers, programmes and partnerships a physical home while connecting YARA’s
+                Pan-African network to a permanent institutional base. It would include:
+              </p>
+            </>
+          }
+          className="mb-10"
+        />
+        <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          {centre.map((c, i) => (
+            <li key={c.title} className="rounded-[var(--radius-card)] bg-lime p-6 text-forest-deep">
+              <span className="text-2xl font-medium">{i + 1}</span>
+              <h3 className="mt-3 font-medium">{c.title}</h3>
+              <p className="mt-1 text-sm leading-relaxed text-forest-deep/80">{c.body}</p>
+            </li>
+          ))}
+        </ol>
+        <p className="mt-8 max-w-3xl leading-relaxed text-white/80">
+          YARA does not need to own every specialised laboratory or research facility. Partnerships with universities,
+          hospitals, research institutes, public agencies and industry can extend the infrastructure available to YARA
+          researchers across Africa.
+        </p>
+      </Section>
+
+      {/* FINANCING + LOOKING AHEAD */}
+      <Section tone="white" labelledBy="financing">
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
-            <Eyebrow className="mb-4 text-forest-deep">A home for the work</Eyebrow>
-            <h2 id="home" className="text-balance text-3xl font-medium leading-tight tracking-tight text-forest-deep md:text-5xl">
-              Building a permanent home for African research talent.
-            </h2>
-            <p className="mt-6 text-lg leading-relaxed text-forest-deep/85">
-              By 2031, YARA aims to establish a permanent YARA Research &amp; Innovation Centre in Accra.
+            <SectionHeading id="financing" eyebrow="Financing the next five years" title="Sustainable Financing" />
+            <p className="mt-5 leading-relaxed text-ink/85">
+              The ambition of this strategy will require more than annual programme grants. YARA will work towards a
+              diversified financing base that combines:
             </p>
-            <p className="mt-4 text-lg leading-relaxed text-forest-deep/85">
-              The Centre would give researchers, programmes and partnerships a physical home while connecting YARA’s
-              Pan-African network to a permanent institutional base.
-            </p>
-          </div>
-          <div>
-            <p className="font-medium text-forest-deep">It would include:</p>
-            <ul className="mt-4 grid gap-4 sm:grid-cols-2">
-              {centre.map((c) => (
-                <li key={c.title} className="rounded-[var(--radius-card)] bg-cream p-6">
-                  <h3 className="text-lg font-medium tracking-tight text-forest">{c.title}</h3>
-                  <p className="mt-2 leading-relaxed text-ink/80">{c.body}</p>
+            <ul className="mt-5 space-y-2.5">
+              {financing.map((f) => (
+                <li key={f} className="flex items-center gap-3">
+                  <span aria-hidden className="flex size-6 items-center justify-center rounded-full bg-lime text-forest">
+                    <Check className="size-3.5" strokeWidth={3} />
+                  </span>
+                  {f}
                 </li>
               ))}
             </ul>
-            <p className="mt-6 leading-relaxed text-forest-deep/85">
-              YARA does not need to own every specialised laboratory or research facility. Partnerships with
-              universities, hospitals, research institutes, public agencies and industry can extend the infrastructure
-              available to YARA researchers across Africa.
+            <p className="mt-6 leading-relaxed text-ink/85">
+              A dedicated YARA Research &amp; Translation Fund will provide resources for promising research to continue
+              beyond its initial project cycle, including follow-on research, data collection, policy pilots,
+              prototypes, validation and incubation.
+            </p>
+            <p className="mt-4 leading-relaxed text-ink/85">
+              The final five-year capital target will be set through the financial model that accompanies this
+              strategy.
             </p>
           </div>
-        </div>
-      </Section>
-
-      <Section labelledBy="financing">
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-          <div>
-            <Eyebrow className="mb-4">Financing the next five years</Eyebrow>
-            <h2 id="financing" className="sr-only">
-              Financing the next five years
-            </h2>
-            <Prose>
-              <p>The ambition of this strategy will require more than annual programme grants.</p>
-              <p>
-                YARA will work towards a diversified financing base that combines multi-year philanthropic support,
-                research grants, institutional partnerships, corporate research collaboration and capital for research
-                translation.
-              </p>
-              <p>
-                A dedicated YARA Research &amp; Translation Fund will provide resources for promising research to
-                continue beyond its initial project cycle, including follow-on research, data collection, policy pilots,
-                prototypes, validation and incubation.
-              </p>
-              <p>The final five-year capital target will be set through the financial model that accompanies this strategy.</p>
-            </Prose>
-          </div>
-          <div>
-            <Eyebrow className="mb-4">Looking ahead</Eyebrow>
-            <Prose>
+          <div className="rounded-[var(--radius-panel)] bg-cream p-8 md:p-10">
+            <SectionHeading eyebrow="Looking ahead" className="mb-5" />
+            <div className="space-y-4 leading-relaxed text-ink/85">
               <p>YARA is still at the beginning of its institutional journey.</p>
               <p>
                 The next five years are about building the capabilities that allow a promising research programme to
                 become a durable African research institution.
               </p>
               <p>
-                By 2031, we want YARA to be identifying research talent across the continent, supporting substantial work
-                in artificial intelligence, climate and public health, strengthening the datasets and technical
-                capabilities available to African researchers, and creating credible pathways through which research can
-                reach publication, policy, industry, innovation and commercialisation.
+                By 2031, we want YARA to be identifying research talent across the continent, supporting substantial
+                work in artificial intelligence, climate and public health, strengthening the datasets and technical
+                capabilities available to African researchers, and creating credible pathways through which research
+                can reach publication, policy, industry, innovation and commercialisation.
               </p>
               <p>
                 We want researchers to have somewhere to pursue important questions, somewhere for strong work to
                 continue growing, and stronger connections to the institutions capable of taking that work further.
               </p>
               <p className="font-medium text-forest">That is the institution YARA intends to build.</p>
-            </Prose>
+            </div>
           </div>
         </div>
       </Section>
 
-      <Section tone="forest" labelledBy="take-part">
-        <SectionHeading id="take-part" tone="light" eyebrow="Take part" title="Take part" className="[&_h2]:sr-only" />
-        <ul className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {takePart.map((t) => (
-            <li key={t.title} className="flex flex-col rounded-[var(--radius-card)] bg-cream p-7 text-ink">
+      {/* TAKE PART */}
+      <Section labelledBy="take-part">
+        <SectionHeading id="take-part" eyebrow="Take part" title="Take Part in YARA" className="mb-10" />
+        <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {takePart.map((t, i) => (
+            <li
+              key={t.title}
+              className={cx(
+                "flex flex-col rounded-[var(--radius-card)] p-7",
+                i % 2 ? "bg-lime text-forest-deep" : "bg-white ring-1 ring-line",
+              )}
+            >
               <h3 className="text-xl font-medium tracking-tight text-forest">{t.title}</h3>
-              <p className="mt-3 flex-1 leading-relaxed text-ink/80">{t.body}</p>
+              <p className="mt-3 flex-1 leading-relaxed opacity-80">{t.body}</p>
               <ArrowLink href={t.href} className="mt-6 text-forest">
                 {t.cta}
               </ArrowLink>

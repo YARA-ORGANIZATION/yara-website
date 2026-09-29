@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { CalendarDays, Clock, MapPin } from "lucide-react";
-import { SymposiumFigure } from "@/components/Art";
+import { Photo } from "@/components/Art";
 import { ArrowLink, ButtonLink, Eyebrow, PageHero, Section, SectionHeading, ThemeIcon } from "@/components/ui";
 import { symposium } from "@/lib/site";
 import type { ThemeKey } from "@/lib/research";
@@ -104,9 +104,12 @@ export default function SymposiumPage() {
           </>
         }
         aside={
-          <div className="hidden rounded-[var(--radius-panel)] bg-cream p-10 lg:block">
-            <SymposiumFigure className="mx-auto w-full max-w-xs" />
-          </div>
+          <Photo
+            src="/images/brand/venue-building.jpg"
+            alt="A modern conference building surrounded by greenery"
+            className="hidden aspect-[4/3] lg:block"
+            priority
+          />
         }
       >
         {isPast ? (
@@ -169,7 +172,7 @@ export default function SymposiumPage() {
       </Section>
 
       <Section labelledBy="programme">
-        <SectionHeading id="programme" title="Programme" />
+        <SectionHeading id="programme" eyebrow="Programme" title="The Symposium Programme" />
         <ol className="mt-10 divide-y divide-line overflow-hidden rounded-[var(--radius-card)] bg-white ring-1 ring-line">
           {programme.map((p) => (
             <li key={p.time} className="grid gap-2 p-6 md:grid-cols-[10rem_1fr] md:gap-8 md:p-8">
@@ -187,6 +190,7 @@ export default function SymposiumPage() {
         <Section tone="white" labelledBy="speakers">
           <SectionHeading
             id="speakers"
+            eyebrow="The panel"
             title="Speakers & Chairs"
             intro="Researchers, institutional leaders and practitioners will join the inaugural Fellows in conversations throughout the day."
           />
@@ -203,30 +207,36 @@ export default function SymposiumPage() {
       )}
 
       <Section tone="cream-deep" labelledBy="attend">
-        <div className="grid gap-10 md:grid-cols-2 md:gap-16">
+        <div className="grid items-center gap-10 md:grid-cols-2 md:gap-16">
+          <Photo
+            src="/images/brand/workshop-table.jpg"
+            alt="Researchers and delegates in discussion around a table"
+            className="aspect-[4/3]"
+          />
           <div>
-            <Eyebrow className="mb-4">Who should attend</Eyebrow>
-            <h2 id="attend" className="sr-only">
-              Who should attend
-            </h2>
-            <p className="text-pretty text-xl leading-relaxed text-ink md:text-2xl">
+            <SectionHeading id="attend" eyebrow="Delegates" title="Who Should Attend?" />
+            <p className="mt-5 text-pretty text-xl leading-relaxed text-ink">
               Researchers and academics, public institutions, industry and technical teams, funders and development
               organisations, students and emerging researchers.
             </p>
           </div>
-          {!isPast && (
-            <div className="rounded-[var(--radius-card)] bg-forest p-7 text-white md:p-9">
-              <Eyebrow tone="lime">Register</Eyebrow>
-              <p className="mt-4 text-xl font-medium">Registration is required.</p>
-              <EventFacts className="mt-5 space-y-2 text-white/85" />
-              <ButtonLink href={symposium.registerUrl} variant="lime" className="mt-7">
-                Register to attend
-              </ButtonLink>
-              <p className="mt-4 text-sm text-white/70">Registration deadline: {symposium.registrationDeadline}.</p>
-            </div>
-          )}
         </div>
       </Section>
+
+      {!isPast && (
+        <section aria-labelledby="register" className="bg-lime py-14 md:py-16">
+          <div className="container-site flex flex-col items-center text-center">
+            <h2 id="register" className="text-2xl font-medium tracking-tight text-forest-deep md:text-3xl">
+              Registration is required.
+            </h2>
+            <EventFacts className="mt-5 flex flex-col items-center gap-2 text-forest-deep/85 md:flex-row md:gap-6" />
+            <ButtonLink href={symposium.registerUrl} className="mt-7">
+              Register to attend
+            </ButtonLink>
+            <p className="mt-4 text-sm text-forest-deep/75">Registration deadline: {symposium.registrationDeadline}.</p>
+          </div>
+        </section>
+      )}
 
       <Section id="after" labelledBy="after-heading">
         <SectionHeading

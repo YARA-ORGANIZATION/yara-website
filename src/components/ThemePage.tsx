@@ -1,48 +1,53 @@
-import { Photo } from "./Art";
 import { ProjectCard } from "./ProjectCard";
-import { Eyebrow, PageHero, Section, SectionHeading, ThemeIcon } from "./ui";
+import { PageHero, Section, SectionHeading, ThemeIcon, cx } from "./ui";
 import { getTheme, projectsForTheme, type ThemeKey } from "@/lib/research";
 
-const heroPhoto: Record<ThemeKey, { src: string; alt: string }> = {
-  ai: { src: "/images/brand/robotics-workshop.jpg", alt: "Young people building electronics together at a workbench" },
-  climate: { src: "/images/brand/farm-workers.jpg", alt: "Farmers tending crops on a green hillside" },
-  health: { src: "/images/brand/lab-microscope.jpg", alt: "A scientist using a microscope in a laboratory" },
-};
-
 const heroTone: Record<ThemeKey, "lime" | "forest"> = { ai: "lime", climate: "forest", health: "lime" };
+const shortName: Record<ThemeKey, string> = { ai: "AI", climate: "Climate", health: "Public Health" };
 
 export default function ThemePage({ theme }: { theme: ThemeKey }) {
   const t = getTheme(theme);
   const tone = heroTone[theme];
   const list = projectsForTheme(theme);
+  const subOnLime = theme === "health";
 
   return (
     <>
-      <PageHero
-        eyebrow={t.name}
-        tone={tone}
-        title={t.heroTitle}
-        lede={<p>{t.heroIntro}</p>}
-        aside={<Photo src={heroPhoto[theme].src} alt={heroPhoto[theme].alt} className="hidden aspect-[4/3] lg:block" priority />}
-      />
+      <PageHero eyebrow={t.name} tone={tone} title={t.heroTitle} lede={<p>{t.heroIntro}</p>} />
 
-      <Section labelledBy="sub-themes">
-        <SectionHeading id="sub-themes" title={`Our ${t.name} focus`} className="[&_h2]:sr-only" />
+      <Section tone={subOnLime ? "lime" : "white"} labelledBy="sub-themes">
+        <SectionHeading
+          id="sub-themes"
+          title={theme === "ai" ? "Core Focus Sub-Themes" : `Core ${shortName[theme]} Sub-Themes`}
+          className={cx("mb-10", subOnLime && "[&_h2]:text-forest-deep")}
+        />
         <ul className="grid gap-5 md:grid-cols-3">
-          {t.subThemes.map((s) => (
-            <li key={s.title} className="rounded-[var(--radius-card)] bg-white p-7 ring-1 ring-line">
-              <ThemeIcon theme={theme} tone={tone === "forest" ? "forest" : "lime"} />
-              <h3 className="mt-5 text-xl font-medium tracking-tight text-forest">{s.title}</h3>
+          {t.subThemes.map((s, i) => (
+            <li
+              key={s.title}
+              className={cx(
+                "rounded-[var(--radius-card)] p-7",
+                subOnLime ? "bg-cream" : "bg-cream ring-1 ring-line",
+              )}
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-semibold text-forest/60">{i + 1}.</span>
+                <ThemeIcon theme={theme} tone={tone === "forest" ? "forest" : "lime"} className="size-9 [&_svg]:size-4" />
+              </div>
+              <h3 className="mt-4 text-xl font-medium tracking-tight text-forest">{s.title}</h3>
               <p className="mt-3 leading-relaxed text-ink/80">{s.body}</p>
             </li>
           ))}
         </ul>
       </Section>
 
-      <Section tone="cream-deep" labelledBy="current-research">
-        <h2 id="current-research" className="mb-8">
-          <Eyebrow>Current research</Eyebrow>
-        </h2>
+      <Section tone="cream" labelledBy="current-research">
+        <SectionHeading
+          id="current-research"
+          eyebrow="Current research"
+          title={`Active ${shortName[theme]} Research Projects`}
+          className="mb-10"
+        />
         <ul className="grid gap-5 md:grid-cols-2">
           {list.map((p) => (
             <ProjectCard key={p.researcher} project={p} summary={p.themeSummary[theme]} />

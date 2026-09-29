@@ -66,9 +66,9 @@ export const footerNav = {
   ],
 };
 
-/** Add a `logo` path (in /public) as each logo file is supplied; without one the name renders as text. */
-export const partners: { name: string; logo?: string }[] = [
-  { name: "CABI" },
-  { name: "Emerging Climate Frontiers", logo: "/images/partners/emerging-climate-frontiers.png" },
-  { name: "Telecel Ghana" },
+/** Partner logos (from the Yara Website Figma file). Logos on the homepage do not link anywhere. */
+export const partners: { name: string; logo?: string; width?: number; height?: number }[] = [
+  { name: "CABI", logo: "/images/partners/cabi.png", width: 900, height: 754 },
+  { name: "Emerging Climate Frontiers", logo: "/images/partners/ecf-logo.png", width: 900, height: 454 },
+  { name: "Telecel Ghana", logo: "/images/partners/telecel-ghana.png", width: 358, height: 218 },
 ];

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { GraduationCap, Handshake, HeartHandshake, Users } from "lucide-react";
-import { Photo } from "@/components/Art";
 import { ArrowLink, PageHero, Section } from "@/components/ui";
 
 export const metadata: Metadata = {
@@ -41,7 +40,6 @@ export default function GetInvolvedPage() {
         eyebrow="Get Involved"
         tone="lime"
         title="There are four main ways to take part in YARA’s work."
-        aside={<Photo src="/images/brand/field-team.jpg" alt="A group of young people in safety gear working together outdoors" className="hidden aspect-[3/2] lg:block" priority />}
       />
       <Section labelledBy="ways">
         <h2 id="ways" className="sr-only">

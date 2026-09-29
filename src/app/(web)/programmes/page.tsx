@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { FlaskConical, Scale } from "lucide-react";
+import { FlaskConical } from "lucide-react";
+import { FellowshipMark } from "@/components/Art";
 import { ButtonLink, PageHero, Section } from "@/components/ui";
 
 export const metadata: Metadata = {
@@ -39,7 +40,7 @@ export default function ProgrammesPage() {
           </li>
           <li className="grid gap-8 rounded-[var(--radius-panel)] bg-lime p-8 text-forest-deep md:grid-cols-[auto_1fr] md:items-center md:p-12">
             <span aria-hidden className="flex size-24 items-center justify-center rounded-[var(--radius-card)] bg-forest text-lime md:size-32">
-              <Scale className="size-10 md:size-12" strokeWidth={1.5} />
+              <FellowshipMark className="size-14 md:size-20" />
             </span>
             <div>
               <h3 className="text-3xl font-medium tracking-tight">AI, Ethics and Climate Governance Fellowship</h3>

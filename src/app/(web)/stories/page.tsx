@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { BrandPanel } from "@/components/Art";
+import { Photo } from "@/components/Art";
 import StoryCard from "@/components/StoryCard";
 import { ButtonLink, Eyebrow, PageHero, Section } from "@/components/ui";
 import { sanityFetch } from "@/sanity/client";
@@ -23,16 +23,16 @@ const spotlights = [
     body: "Ruth Biney Senior is documenting the movement, rhythm and interaction of Ampe in a form that computers can study.",
     cta: "Read the story",
     href: "/stories/ampe-db-ghanaian-game-research-data",
-    tone: "forest" as const,
-    label: "Ampe-DB",
+    image: "/images/brand/ampe-wide.jpg",
+    alt: "Children playing Ampe outdoors",
   },
   {
     title: "Meet the Inaugural YARA Fellows and the Research They Are Pursuing",
     body: "Meet YARA’s first Fellowship cohort and the original research they are beginning across artificial intelligence, climate and public health.",
     cta: "Meet the Fellows",
     href: "/stories/meet-the-inaugural-yara-fellows",
-    tone: "lime" as const,
-    label: "Inaugural Fellows",
+    image: "/images/brand/group-photo.jpg",
+    alt: "A group of young researchers standing together",
   },
 ];
 
@@ -81,11 +81,12 @@ export default async function StoriesPage() {
           {spotlights.map((s) => (
             <li key={s.href}>
               <Link href={s.href} className="group block">
-                <BrandPanel tone={s.tone} className="aspect-[16/10] transition-transform group-hover:-translate-y-1">
-                  <p className={s.tone === "forest" ? "text-2xl font-medium text-white" : "text-2xl font-medium text-forest-deep"}>
-                    {s.label}
-                  </p>
-                </BrandPanel>
+                <Photo
+                  src={s.image}
+                  alt={s.alt}
+                  className="aspect-[16/10] transition-transform group-hover:-translate-y-1"
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                />
                 <p className="mt-5 text-xs font-semibold tracking-[0.12em] text-forest uppercase">Spotlight</p>
                 <h3 className="mt-2 text-balance text-2xl font-medium leading-snug tracking-tight text-ink group-hover:text-forest">
                   {s.title}
@@ -138,19 +139,19 @@ export default async function StoriesPage() {
         )}
       </Section>
 
-      <Section tone="lime" labelledBy="follow" className="py-12 md:py-16">
-        <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-          <div>
-            <h2 id="follow">
-              <Eyebrow className="text-forest-deep">Follow the work</Eyebrow>
-            </h2>
-            <p className="mt-3 max-w-xl text-xl text-forest-deep">
-              Get occasional updates on YARA research, programmes, opportunities and the Research Symposium.
-            </p>
-          </div>
-          <ButtonLink href="/newsletter">Subscribe to YARA updates</ButtonLink>
+      <section aria-labelledby="follow" className="bg-forest py-14 md:py-16">
+        <div className="container-site flex flex-col items-center text-center">
+          <h2 id="follow" className="text-2xl font-medium tracking-tight text-white md:text-3xl">
+            Follow the Work
+          </h2>
+          <p className="mt-3 max-w-xl text-lg text-white/80">
+            Get occasional updates on YARA research, programmes, opportunities and the Research Symposium.
+          </p>
+          <ButtonLink href="/newsletter" variant="lime" className="mt-7">
+            Subscribe to YARA updates
+          </ButtonLink>
         </div>
-      </Section>
+      </section>
     </>
   );
 }

@@ -1,37 +1,19 @@
 import Image from "next/image";
-import { useId, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import { Arcs, cx } from "./ui";
 
-/** Figure with raised arms used for the Symposium 2026 identity. */
-export function SymposiumFigure({ className }: { className?: string }) {
-  const id = useId().replace(/:/g, "");
+/** The Symposium 2026 figure, captured from the Yara Website Figma file. */
+export function SymposiumFigure({ className, priority }: { className?: string; priority?: boolean }) {
   return (
-    <svg viewBox="0 0 400 400" className={className} role="img" aria-label="YARA Research Symposium 2026 figure">
-      <defs>
-        <linearGradient id={`${id}-a`} x1="120" y1="20" x2="300" y2="300" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#ff5f8f" />
-          <stop offset="45%" stopColor="#ff8a4c" />
-          <stop offset="100%" stopColor="#ffd84d" />
-        </linearGradient>
-        <linearGradient id={`${id}-b`} x1="60" y1="380" x2="340" y2="40" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#ff5f8f" />
-          <stop offset="55%" stopColor="#b46cff" />
-          <stop offset="100%" stopColor="#35b8f0" />
-        </linearGradient>
-        <linearGradient id={`${id}-c`} x1="340" y1="40" x2="60" y2="380" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#ff4f7a" />
-          <stop offset="100%" stopColor="#35b8f0" />
-        </linearGradient>
-      </defs>
-      <circle cx="200" cy="74" r="44" fill={`url(#${id}-a)`} />
-      <g strokeLinecap="round" strokeWidth="46" fill="none">
-        <path d="M188 176 L86 64" stroke={`url(#${id}-b)`} />
-        <path d="M212 176 L314 64" stroke={`url(#${id}-c)`} />
-        <path d="M200 170 V238" stroke={`url(#${id}-a)`} strokeWidth="64" />
-        <path d="M188 240 L112 356" stroke={`url(#${id}-c)`} />
-        <path d="M212 240 L288 356" stroke={`url(#${id}-b)`} />
-      </g>
-    </svg>
+    <Image
+      src="/images/brand/symposium-figure.png"
+      alt="YARA Research Symposium 2026 figure"
+      width={1218}
+      height={1310}
+      sizes="(min-width: 768px) 420px, 80vw"
+      priority={priority}
+      className={cx("h-auto", className)}
+    />
   );
 }
 
@@ -75,16 +57,34 @@ export function Photo({
   className,
   sizes = "(min-width: 1024px) 40vw, 100vw",
   priority,
+  rounded = true,
 }: {
   src: string;
   alt: string;
   className?: string;
   sizes?: string;
   priority?: boolean;
+  rounded?: boolean;
 }) {
   return (
-    <div className={cx("relative overflow-hidden rounded-[var(--radius-panel)] bg-cream-deep", className)}>
+    <div className={cx("relative overflow-hidden bg-cream-deep", rounded && "rounded-[var(--radius-panel)]", className)}>
       <Image src={src} alt={alt} fill sizes={sizes} priority={priority} className="object-cover" />
     </div>
+  );
+}
+
+/** Four-petal pinwheel mark used for the AI, Ethics and Climate Governance Fellowship. */
+export function FellowshipMark({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 100 100" aria-hidden className={className}>
+      {[0, 90, 180, 270].map((r) => (
+        <path
+          key={r}
+          transform={`rotate(${r} 50 50)`}
+          d="M50 50C50 30 60 14 78 10c4 18-6 34-28 40z"
+          fill="currentColor"
+        />
+      ))}
+    </svg>
   );
 }

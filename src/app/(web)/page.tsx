@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { BrandPanel, Photo, SymposiumFigure } from "@/components/Art";
+import { Photo, SymposiumFigure } from "@/components/Art";
 import NewsletterBand from "@/components/NewsletterBand";
-import { ArrowLink, ButtonLink, Eyebrow, Monogram, Section, SectionHeading, ThemeIcon } from "@/components/ui";
+import { ButtonLink, Eyebrow, Monogram, Section, SectionHeading, ThemeIcon } from "@/components/ui";
 import { fellows, initials, themes } from "@/lib/research";
 import { partners, symposium } from "@/lib/site";
 
@@ -91,8 +91,8 @@ export default function Home() {
           eyebrow="Our work"
           tone="light"
           align="center"
-          title="YARA concentrates its research and programmes in three areas where stronger local evidence and research capacity will shape consequential decisions across the continent."
-          className="max-w-4xl [&_h2]:text-2xl [&_h2]:leading-snug md:[&_h2]:text-4xl"
+          title="Our Key Areas of Focus"
+          intro="YARA concentrates its research and programmes in three areas where stronger local evidence and research capacity will shape consequential decisions across the continent."
         />
         <ul className="mt-12 grid gap-5 md:grid-cols-3">
           {themes.map((t) => (
@@ -210,8 +210,8 @@ export default function Home() {
       {/* SYMPOSIUM */}
       <Section labelledBy="symposium">
         <div className="grid items-center gap-10 md:grid-cols-[0.9fr_1.1fr] md:gap-16">
-          <div className="rounded-[var(--radius-panel)] bg-white p-8 ring-1 ring-line md:p-12">
-            <SymposiumFigure className="mx-auto w-full max-w-sm" />
+          <div className="flex justify-center">
+            <SymposiumFigure className="w-full max-w-md" />
           </div>
           <div>
             <Eyebrow className="mb-4">Symposium 2026</Eyebrow>
@@ -243,45 +243,49 @@ export default function Home() {
       </Section>
 
       {/* STORIES */}
-      <Section tone="white" labelledBy="stories">
-        <div className="grid items-center gap-10 md:grid-cols-2 md:gap-16">
-          <div className="md:order-2">
-            <BrandPanel tone="forest" className="aspect-[4/3]" label="Ampe gameplay">
-              <p className="text-sm font-semibold tracking-[0.14em] uppercase">Spotlight</p>
-              <p className="mt-2 text-3xl font-medium tracking-tight text-white">Ampe-DB</p>
-            </BrandPanel>
-          </div>
-          <div>
-            <Eyebrow className="mb-4">Stories</Eyebrow>
-            <h2 id="stories" className="text-balance text-3xl font-medium leading-tight tracking-tight text-forest md:text-4xl">
+      <Section tone="cream" labelledBy="stories" className="pt-0 md:pt-0">
+        <h2 id="stories" className="text-center text-3xl font-medium tracking-tight text-forest md:text-5xl">
+          Stories
+        </h2>
+        <article className="mt-10 grid overflow-hidden rounded-[var(--radius-panel)] bg-white ring-1 ring-line md:grid-cols-2">
+          <Photo
+            src="/images/brand/ampe-players.jpg"
+            alt="Children playing Ampe, jumping and clapping together"
+            rounded={false}
+            className="aspect-[4/3] md:aspect-auto md:min-h-80"
+            sizes="(min-width: 768px) 50vw, 100vw"
+          />
+          <div className="flex flex-col justify-center p-7 md:p-12">
+            <p className="text-xs font-semibold tracking-[0.14em] text-forest uppercase">Spotlight</p>
+            <h3 className="mt-3 text-balance text-2xl font-medium leading-tight tracking-tight text-forest md:text-3xl">
               Ampe-DB: When a Ghanaian Game Becomes Research Data
-            </h2>
-            <p className="mt-5 text-lg leading-relaxed text-ink/85">
+            </h3>
+            <p className="mt-4 leading-relaxed text-ink/85">
               Ruth Biney Senior is helping turn one of Ghana’s best-known traditional games into data that can be
               studied, modelled and preserved.
             </p>
-            <p className="mt-4 text-lg leading-relaxed text-ink/85">
+            <p className="mt-3 leading-relaxed text-ink/85">
               Her work on Ampe-DB documents paired movement during gameplay, opening new questions about how African
               movement, culture and interaction can be represented in computational research.
             </p>
-            <ButtonLink href="/stories/ampe-db-ghanaian-game-research-data" variant="dark" className="mt-7">
+            <ButtonLink href="/stories/ampe-db-ghanaian-game-research-data" variant="dark" className="mt-7 self-start">
               Read Ruth’s story
             </ButtonLink>
           </div>
-        </div>
+        </article>
       </Section>
 
       {/* PARTNERS */}
       <section aria-labelledby="partners" className="bg-lime py-12 md:py-14">
         <div className="container-site">
-          <h2 id="partners" className="text-center text-xs font-semibold tracking-[0.14em] text-forest-deep uppercase">
+          <h2 id="partners" className="text-center text-2xl font-medium tracking-tight text-forest-deep md:text-3xl">
             Partners
           </h2>
           <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-14 gap-y-6">
             {partners.map((p) =>
               p.logo ? (
-                <li key={p.name} className="overflow-hidden rounded-xl bg-black px-4 py-2">
-                  <Image src={p.logo} alt={p.name} width={400} height={202} className="h-10 w-auto md:h-12" />
+                <li key={p.name}>
+                  <Image src={p.logo} alt={p.name} width={p.width ?? 400} height={p.height ?? 200} className="h-16 w-auto md:h-20" />
                 </li>
               ) : (
                 <li key={p.name} className="text-xl font-medium tracking-tight text-forest-deep/80 md:text-2xl">
@@ -295,15 +299,15 @@ export default function Home() {
 
       {/* GET INVOLVED */}
       <Section labelledBy="get-involved">
-        <SectionHeading id="get-involved" title="Get involved" />
+        <SectionHeading id="get-involved" title="Get involved" align="center" />
         <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {getInvolved.map((g) => (
             <li key={g.title} className="flex flex-col rounded-[var(--radius-card)] bg-white p-7 ring-1 ring-line">
               <h3 className="text-2xl font-medium tracking-tight text-forest">{g.title}</h3>
               <p className="mt-3 flex-1 leading-relaxed text-ink/80">{g.body}</p>
-              <ArrowLink href={g.href} className="mt-6 text-forest">
+              <ButtonLink href={g.href} variant="outline" className="mt-6 self-start text-forest">
                 {g.cta}
-              </ArrowLink>
+              </ButtonLink>
             </li>
           ))}
         </ul>

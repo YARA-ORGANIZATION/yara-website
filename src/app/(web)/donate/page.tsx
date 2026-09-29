@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { Photo } from "@/components/Art";
-import { ArrowLink, ButtonLink, PageHero } from "@/components/ui";
+import { HandCoins, Landmark } from "lucide-react";
+import { ArrowLink, ButtonLink, PageHero, Section } from "@/components/ui";
 import { liveLinks } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -13,29 +13,41 @@ export const metadata: Metadata = {
 export default function DonatePage() {
   return (
     <>
-      <PageHero
-        eyebrow="Donate"
-        title="Support the research."
-        lede={
-          <p>
-            Donations help cover research training, mentorship, research costs, data and technical resources,
-            publication preparation and opportunities for researchers to present their work.
-          </p>
-        }
-        aside={<Photo src="/images/brand/farmer-field.jpg" alt="A farmer kneeling among crops in a field" className="hidden aspect-[4/3] lg:block" priority />}
-      >
-        {liveLinks.donation && <ButtonLink href={liveLinks.donation}>Make a donation</ButtonLink>}
-      </PageHero>
-      <section className="bg-cream pb-20 md:pb-28">
-        <div className="container-site">
-          <div className="rounded-[var(--radius-card)] bg-forest p-8 text-white md:flex md:items-center md:justify-between md:p-10">
-            <p className="text-xl">For institutional grants or larger funding partnerships,</p>
-            <ArrowLink href="/contact" className="mt-4 text-lg text-lime md:mt-0">
-              contact YARA
-            </ArrowLink>
+      <PageHero eyebrow="Donate" tone="lime" title="Support the research." />
+      <Section labelledBy="donate-why">
+        <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
+          <div>
+            <h2 id="donate-why" className="text-2xl font-medium tracking-tight text-forest md:text-3xl">
+              Your support drives African science
+            </h2>
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink/85">
+              Donations help cover research training, mentorship, research costs, data and technical resources,
+              publication preparation and opportunities for researchers to present their work.
+            </p>
+          </div>
+          <div className="space-y-4">
+            <div className="rounded-[var(--radius-card)] bg-lime p-7 text-forest-deep">
+              <HandCoins aria-hidden className="size-6" />
+              <h3 className="mt-4 text-xl font-medium tracking-tight">Make a donation</h3>
+              {liveLinks.donation ? (
+                <ButtonLink href={liveLinks.donation} className="mt-5">
+                  Make a donation
+                </ButtonLink>
+              ) : (
+                <p className="mt-2 text-forest-deep/80">Online giving will open here soon.</p>
+              )}
+            </div>
+            <div className="rounded-[var(--radius-card)] bg-lime-soft p-7 text-forest-deep">
+              <Landmark aria-hidden className="size-6" />
+              <h3 className="mt-4 text-xl font-medium tracking-tight">Institutional grants</h3>
+              <p className="mt-2 text-forest-deep/80">For institutional grants or larger funding partnerships,</p>
+              <ArrowLink href="/contact" className="mt-4 text-forest">
+                contact YARA
+              </ArrowLink>
+            </div>
           </div>
         </div>
-      </section>
+      </Section>
     </>
   );
 }
