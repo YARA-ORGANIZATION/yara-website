@@ -16,6 +16,7 @@ export default function OpportunitiesPage() {
     <>
       <PageHero
         eyebrow="Opportunities"
+        tone="lime"
         title="Applications for YARA programmes, Fellowships and other open calls are published here."
       />
 

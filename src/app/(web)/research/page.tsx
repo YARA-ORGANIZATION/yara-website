@@ -24,8 +24,8 @@ export default function ResearchPage() {
       />
 
       <Section className="pt-0 md:pt-0" labelledBy="themes">
-        <h2 id="themes" className="sr-only">
-          Research themes
+        <h2 id="themes" className="mb-8 text-2xl font-medium tracking-tight text-forest md:text-3xl">
+          Our Focus Sectors
         </h2>
         <ul className="grid gap-5 md:grid-cols-3">
           {themes.map((t) => (
@@ -48,7 +48,7 @@ export default function ResearchPage() {
       </Section>
 
       <Section tone="cream-deep" labelledBy="all-research">
-        <SectionHeading id="all-research" title="All research" className="mb-8" />
+        <SectionHeading id="all-research" eyebrow="All research" title="Explore All Research" className="mb-8" />
         <ResearchExplorer />
       </Section>
     </>

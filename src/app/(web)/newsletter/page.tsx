@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { NewsletterForm } from "@/components/Forms";
-import { Eyebrow } from "@/components/ui";
+import { PageHero } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Newsletter",
@@ -10,17 +10,23 @@ export const metadata: Metadata = {
 
 export default function NewsletterPage() {
   return (
-    <section className="bg-forest pt-36 pb-24 md:pt-48 md:pb-32">
-      <div className="container-site max-w-3xl">
-        <Eyebrow tone="lime">Newsletter</Eyebrow>
-        <h1 className="mt-6 text-4xl font-medium tracking-tight text-white md:text-6xl">Updates from YARA</h1>
-        <p className="mt-6 text-xl leading-relaxed text-white/85">
-          Research, programmes, opportunities and news from the YARA Research Symposium.
-        </p>
-        <div className="mt-10">
-          <NewsletterForm />
+    <>
+      <PageHero
+        eyebrow="Newsletter"
+        tone="lime"
+        title="Updates from YARA"
+        lede={<p>Research, programmes, opportunities and news from the YARA Research Symposium.</p>}
+      />
+      <section className="bg-cream py-16 md:py-24">
+        <div className="container-site">
+          <div className="mx-auto max-w-xl rounded-[var(--radius-panel)] bg-white p-7 text-center ring-1 ring-line md:p-10">
+            <h2 className="text-xl font-medium tracking-tight text-forest">Subscribe to YARA updates</h2>
+            <div className="mt-6 text-left">
+              <NewsletterForm tone="light" />
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

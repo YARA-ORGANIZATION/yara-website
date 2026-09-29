@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Photo } from "@/components/Art";
 import { ArrowLink, ButtonLink, Eyebrow, PageHero, Section, SectionHeading } from "@/components/ui";
 
 export const metadata: Metadata = {
@@ -91,40 +92,52 @@ export default function StemFellowshipPage() {
         <h2 id="details" className="sr-only">
           Mentorship, research and the Symposium
         </h2>
-        <div className="grid gap-5 md:grid-cols-3">
-          <div className="rounded-[var(--radius-card)] bg-white p-7 ring-1 ring-line">
-            <Eyebrow>Mentorship</Eyebrow>
-            <p className="mt-4 leading-relaxed text-ink/85">
-              Each Fellow works with a mentor who provides subject knowledge, reviews the work and helps the Fellow make
-              decisions as the project develops.
-            </p>
-          </div>
-          <div className="rounded-[var(--radius-card)] bg-white p-7 ring-1 ring-line">
-            <Eyebrow>Research</Eyebrow>
-            <p className="mt-4 leading-relaxed text-ink/85">Fellows currently pursue research across:</p>
-            <p className="mt-2 font-medium text-forest">Artificial Intelligence · Climate · Public Health</p>
-            <ArrowLink href="/research" className="mt-5 text-forest">
-              Explore current research
-            </ArrowLink>
-          </div>
-          <div className="rounded-[var(--radius-card)] bg-lime p-7 text-forest-deep">
-            <Eyebrow className="text-forest-deep">The Symposium</Eyebrow>
-            <p className="mt-4 leading-relaxed">
-              The Fellowship ends with the YARA Research Symposium, where Fellows present their work to researchers,
-              universities, public institutions, industry and funders.
-            </p>
-            <ArrowLink href="/symposium-2026" className="mt-5">
-              Explore the YARA Research Symposium
-            </ArrowLink>
-          </div>
-        </div>
+        <ul className="space-y-4">
+          <li className="grid gap-6 rounded-[var(--radius-card)] bg-white p-5 ring-1 ring-line sm:grid-cols-[9rem_1fr] sm:items-center md:p-6">
+            <Photo src="/images/brand/lab-microscope.jpg" alt="A scientist working with a mentor in a laboratory" className="aspect-square max-w-36 rounded-2xl" rounded={false} sizes="144px" />
+            <div>
+              <h3 className="text-xl font-medium tracking-tight text-forest">Sustained Mentorship</h3>
+              <p className="mt-2 leading-relaxed text-ink/80">
+                Each Fellow works with a mentor who provides subject knowledge, reviews the work and helps the Fellow make
+                decisions as the project develops.
+              </p>
+            </div>
+          </li>
+          <li className="grid gap-6 rounded-[var(--radius-card)] bg-white p-5 ring-1 ring-line sm:grid-cols-[9rem_1fr] sm:items-center md:p-6">
+            <Photo src="/images/brand/lab-researcher.jpg" alt="A young researcher at work in a laboratory" className="aspect-square max-w-36 rounded-2xl" rounded={false} sizes="144px" />
+            <div>
+              <h3 className="text-xl font-medium tracking-tight text-forest">Research Specialisation</h3>
+              <p className="mt-2 leading-relaxed text-ink/80">
+                Fellows currently pursue research across:{" "}
+                <span className="font-medium text-forest">Artificial Intelligence · Climate · Public Health</span>
+              </p>
+              <ArrowLink href="/research" className="mt-3 text-sm text-forest">
+                Explore current research
+              </ArrowLink>
+            </div>
+          </li>
+          <li className="grid gap-6 rounded-[var(--radius-card)] bg-white p-5 ring-1 ring-line sm:grid-cols-[9rem_1fr] sm:items-center md:p-6">
+            <Photo src="/images/brand/workshop-table.jpg" alt="Researchers discussing work around a table" className="aspect-square max-w-36 rounded-2xl" rounded={false} sizes="144px" />
+            <div>
+              <h3 className="text-xl font-medium tracking-tight text-forest">The Symposium</h3>
+              <p className="mt-2 leading-relaxed text-ink/80">
+                The Fellowship ends with the YARA Research Symposium, where Fellows present their work to researchers,
+                universities, public institutions, industry and funders.
+              </p>
+              <ArrowLink href="/symposium-2026" className="mt-3 text-sm text-forest">
+                Explore the YARA Research Symposium
+              </ArrowLink>
+            </div>
+          </li>
+        </ul>
       </Section>
 
       <Section tone="lime" labelledBy="applications" className="py-12 md:py-16">
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div>
-            <h2 id="applications">
-              <Eyebrow className="text-forest-deep">Applications</Eyebrow>
+            <Eyebrow className="text-forest-deep">Applications</Eyebrow>
+            <h2 id="applications" className="mt-2 text-2xl font-medium tracking-tight text-forest-deep md:text-3xl">
+              Apply for the STEM Research Fellowship
             </h2>
             <p className="mt-3 max-w-xl text-xl text-forest-deep">
               Applications for the next cohort will be announced through YARA&apos;s opportunities page.

@@ -40,7 +40,7 @@ export default function PartnerPage() {
     <>
       <PageHero
         eyebrow="Partner"
-        tone="forest"
+        tone="lime"
         title="Partner with YARA"
         lede={
           <>

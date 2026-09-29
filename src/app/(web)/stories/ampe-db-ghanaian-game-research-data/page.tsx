@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { BrandPanel } from "@/components/Art";
+import { Photo } from "@/components/Art";
 import { ArrowLink, Prose } from "@/components/ui";
 import { site } from "@/lib/site";
 
@@ -49,6 +49,13 @@ export default function AmpeStoryPage() {
             {title}
           </h1>
           <p className="mt-6 max-w-3xl text-pretty text-xl leading-relaxed text-white/85 md:text-2xl">{standfirst}</p>
+          <Photo
+            src="/images/brand/ampe-feet.jpg"
+            alt="Two players mid-jump during a game of Ampe"
+            className="mt-10 aspect-[21/9]"
+            sizes="(min-width: 1280px) 1200px, 100vw"
+            priority
+          />
         </div>
       </header>
 
@@ -138,7 +145,7 @@ export default function AmpeStoryPage() {
           </Prose>
 
           <aside className="space-y-5 lg:sticky lg:top-28 lg:self-start">
-            <BrandPanel tone="lime" className="aspect-square" label="Ampe-DB" />
+            <Photo src="/images/brand/ampe-players.jpg" alt="Children playing Ampe, jumping and clapping together" className="aspect-[5/4]" sizes="320px" />
             <div className="rounded-[var(--radius-card)] bg-white p-6 ring-1 ring-line">
               <h2 className="text-xs font-semibold tracking-[0.14em] text-forest uppercase">Inside Ampe-DB</h2>
               <ul className="mt-4 space-y-3">

@@ -26,6 +26,7 @@ export default function MentorPage() {
     <>
       <PageHero
         eyebrow="Mentor"
+        tone="lime"
         title="Mentor with YARA"
         lede={
           <>
