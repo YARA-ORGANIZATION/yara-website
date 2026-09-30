@@ -1,5 +1,5 @@
 import type { ThemeKey } from "./research";
-import type { StoryCard, StoryCategory } from "@/sanity/queries";
+import type { StoryCategory, StoryCardData } from "@/backend/models/stories";
 
 export type StoryItem = {
   id: string;
@@ -52,25 +52,24 @@ const builtIn: StoryItem[] = [
 
 const THEMES: ThemeKey[] = ["ai", "climate", "health"];
 
-function fromCms(s: StoryCard): StoryItem {
+function fromDb(s: StoryCardData): StoryItem {
   const external = s.category === "press" && !!s.externalUrl;
   return {
-    id: s._id,
+    id: s.id ?? s.slug,
     title: s.title,
     href: external ? s.externalUrl! : `/stories/${s.slug}`,
     external,
     category: s.category,
     excerpt: s.excerpt,
-    publishedAt: s.publishedAt,
-    themes: (s.themes ?? []).filter((t): t is ThemeKey => THEMES.includes(t as ThemeKey)),
-    byline: s.people?.length ? s.people.join(", ") : s.author || s.publication,
-    featured: !!s.featured,
+    publishedAt: typeof s.publishedAt === "string" ? s.publishedAt : String(s.publishedAt),
+    themes: [],
+    byline: s.publication || undefined,
+    featured: false,
   };
 }
 
-/** All stories, newest first, plus the (up to three) featured ones. CMS picks lead the featured row. */
-export function buildStories(cms: StoryCard[]) {
-  const all = [...cms.map(fromCms), ...builtIn].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
+export function buildStories(db: StoryCardData[]) {
+  const all = [...db.map(fromDb), ...builtIn].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
   const featured = [
     ...all.filter((s) => s.featured && !s.id.startsWith("static-")),
     ...builtIn.filter((s) => s.featured),

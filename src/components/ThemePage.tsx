@@ -1,14 +1,15 @@
 import { ProjectCard } from "./ProjectCard";
 import { PageHero, Section, SectionHeading, ThemeIcon, cx } from "./ui";
-import { getTheme, projectsForTheme, type ThemeKey } from "@/lib/research";
+import { getTheme, type ThemeKey } from "@/lib/research";
+import type { ResearchProjectSchema } from "@/backend/models/research_projects";
 
 const heroTone: Record<ThemeKey, "lime" | "forest"> = { ai: "lime", climate: "forest", health: "lime" };
 const shortName: Record<ThemeKey, string> = { ai: "AI", climate: "Climate", health: "Public Health" };
 
-export default function ThemePage({ theme }: { theme: ThemeKey }) {
+export default function ThemePage({ theme, projects = [] }: { theme: ThemeKey; projects?: ResearchProjectSchema[] }) {
   const t = getTheme(theme);
   const tone = heroTone[theme];
-  const list = projectsForTheme(theme);
+  const list = projects;
   const subOnLime = theme === "health";
 
   return (
@@ -50,7 +51,7 @@ export default function ThemePage({ theme }: { theme: ThemeKey }) {
         />
         <ul className="grid gap-5 md:grid-cols-2">
           {list.map((p) => (
-            <ProjectCard key={p.researcher} project={p} summary={p.themeSummary[theme]} />
+            <ProjectCard key={p.researcher} project={p} themeOverride={theme} />
           ))}
         </ul>
       </Section>

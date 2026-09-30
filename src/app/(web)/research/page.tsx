@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import ResearchExplorer from "@/components/ResearchExplorer";
 import { PageHero, Section, SectionHeading, ThemeIcon } from "@/components/ui";
 import { themes } from "@/lib/research";
+import { fetchAllProjects } from "@/lib/firebase-fetch";
 
 export const metadata: Metadata = {
   title: "Research",
@@ -12,7 +13,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/research" },
 };
 
-export default function ResearchPage() {
+export default async function ResearchPage() {
+  const projects = await fetchAllProjects();
   return (
     <>
       <PageHero
@@ -49,7 +51,7 @@ export default function ResearchPage() {
 
       <Section tone="cream-deep" labelledBy="all-research">
         <SectionHeading id="all-research" eyebrow="All research" title="Explore All Research" className="mb-8" />
-        <ResearchExplorer />
+        <ResearchExplorer projects={projects} />
       </Section>
     </>
   );

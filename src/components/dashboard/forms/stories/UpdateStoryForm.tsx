@@ -3,8 +3,14 @@
 import { useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { useAppDispatch } from "@/redux/app/hooks";
-import { updateStoryAsync, deleteStoryAsync } from "@/redux/features/stories/actions";
-import { processContentImages, cleanupRemovedImages } from "@/backend/firebase/storage/storage_func";
+import {
+  updateStoryAsync,
+  deleteStoryAsync,
+} from "@/redux/features/stories/actions";
+import {
+  processContentImages,
+  cleanupRemovedImages,
+} from "@/backend/firebase/storage/storage_func";
 import type { StorySchema, StoryCategory } from "@/backend/models/stories";
 import ImageUpload, { type ImageUploadRef } from "../../ImageUpload";
 import RichTextEditor from "../../RichTextEditor";
@@ -46,9 +52,10 @@ export default function UpdateStoryForm({ data, onSuccess }: Props) {
     themes: data.themes ?? [],
     mainImageAlt: data.mainImageAlt ?? "",
     mainImageCaption: data.mainImageCaption ?? "",
-    publishedAt: data.publishedAt instanceof Date
-      ? data.publishedAt.toISOString().slice(0, 16)
-      : new Date(data.publishedAt).toISOString().slice(0, 16),
+    publishedAt:
+      data.publishedAt instanceof Date
+        ? data.publishedAt.toISOString().slice(0, 16)
+        : new Date(data.publishedAt).toISOString().slice(0, 16),
     seoTitle: data.seoTitle ?? "",
     seoDescription: data.seoDescription ?? "",
   });
@@ -92,7 +99,9 @@ export default function UpdateStoryForm({ data, onSuccess }: Props) {
             externalUrl: form.externalUrl || null,
             publication: form.publication || null,
             author: form.author || null,
-            people: form.people ? form.people.split(",").map((p) => p.trim()) : [],
+            people: form.people
+              ? form.people.split(",").map((p) => p.trim())
+              : [],
             themes: form.themes,
             publishedAt: new Date(form.publishedAt),
             seoTitle: form.seoTitle || null,
@@ -130,8 +139,11 @@ export default function UpdateStoryForm({ data, onSuccess }: Props) {
     "w-full rounded-lg border border-transparent bg-white p-3 text-base font-medium text-black outline-none placeholder:text-neutral-400 active:border-neutral-300 focus:border-neutral-300 md:text-sm lg:text-sm";
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[340px_1fr]">
-      <div className="space-y-5">
+    <div className="flex h-full min-h-0 flex-col gap-4 overflow-y-auto px-4 pb-4 sm:px-6 lg:grid lg:grid-cols-[340px_minmax(0,1fr)] lg:overflow-hidden">
+      <div
+        data-lenis-prevent
+        className="space-y-5 rounded-xl bg-neutral-200 p-6 lg:min-h-0 lg:overflow-y-auto"
+      >
         <ImageUpload
           ref={imageRef}
           onImageUpload={setFile}
@@ -140,11 +152,21 @@ export default function UpdateStoryForm({ data, onSuccess }: Props) {
         />
         <div>
           <label className="text-sm font-medium text-black">Title *</label>
-          <input type="text" value={form.title} onChange={(e) => updateField("title", e.target.value)} className={inputCls} />
+          <input
+            type="text"
+            value={form.title}
+            onChange={(e) => updateField("title", e.target.value)}
+            className={inputCls}
+          />
         </div>
         <div>
           <label className="text-sm font-medium text-black">Slug *</label>
-          <input type="text" value={form.slug} onChange={(e) => updateField("slug", e.target.value)} className={inputCls} />
+          <input
+            type="text"
+            value={form.slug}
+            onChange={(e) => updateField("slug", e.target.value)}
+            className={inputCls}
+          />
         </div>
         <div>
           <label className="text-sm font-medium text-black">Category *</label>
@@ -155,7 +177,9 @@ export default function UpdateStoryForm({ data, onSuccess }: Props) {
                 type="button"
                 onClick={() => updateField("category", c.value)}
                 className={`rounded-full px-3 py-1.5 text-sm font-medium transition-colors ${
-                  form.category === c.value ? "bg-forest text-lime" : "bg-cream text-ink ring-1 ring-line hover:ring-forest"
+                  form.category === c.value
+                    ? "bg-forest text-lime"
+                    : "bg-cream text-ink ring-1 ring-line hover:ring-forest"
                 }`}
               >
                 {c.label}
@@ -165,19 +189,41 @@ export default function UpdateStoryForm({ data, onSuccess }: Props) {
         </div>
         <div>
           <label className="text-sm font-medium text-black">Excerpt *</label>
-          <textarea value={form.excerpt} onChange={(e) => updateField("excerpt", e.target.value)} rows={3} className={inputCls} />
+          <textarea
+            value={form.excerpt}
+            onChange={(e) => updateField("excerpt", e.target.value)}
+            rows={3}
+            className={inputCls}
+          />
         </div>
         <div>
-          <label className="text-sm font-medium text-black">Image alt text</label>
-          <input type="text" value={form.mainImageAlt} onChange={(e) => updateField("mainImageAlt", e.target.value)} className={inputCls} />
+          <label className="text-sm font-medium text-black">
+            Image alt text
+          </label>
+          <input
+            type="text"
+            value={form.mainImageAlt}
+            onChange={(e) => updateField("mainImageAlt", e.target.value)}
+            className={inputCls}
+          />
         </div>
         <div>
           <label className="text-sm font-medium text-black">Author</label>
-          <input type="text" value={form.author} onChange={(e) => updateField("author", e.target.value)} className={inputCls} />
+          <input
+            type="text"
+            value={form.author}
+            onChange={(e) => updateField("author", e.target.value)}
+            className={inputCls}
+          />
         </div>
         <div>
           <label className="text-sm font-medium text-black">Published at</label>
-          <input type="datetime-local" value={form.publishedAt} onChange={(e) => updateField("publishedAt", e.target.value)} className={inputCls} />
+          <input
+            type="datetime-local"
+            value={form.publishedAt}
+            onChange={(e) => updateField("publishedAt", e.target.value)}
+            className={inputCls}
+          />
         </div>
         <div>
           <label className="text-sm font-medium text-black">Themes</label>
@@ -188,7 +234,9 @@ export default function UpdateStoryForm({ data, onSuccess }: Props) {
                 type="button"
                 onClick={() => toggleTheme(t.value)}
                 className={`rounded-full px-3 py-1.5 text-sm font-medium transition-colors ${
-                  form.themes.includes(t.value) ? "bg-forest text-lime" : "bg-cream text-ink ring-1 ring-line hover:ring-forest"
+                  form.themes.includes(t.value)
+                    ? "bg-forest text-lime"
+                    : "bg-cream text-ink ring-1 ring-line hover:ring-forest"
                 }`}
               >
                 {t.label}
@@ -199,29 +247,63 @@ export default function UpdateStoryForm({ data, onSuccess }: Props) {
         {form.category === "press" && (
           <>
             <div>
-              <label className="text-sm font-medium text-black">External URL</label>
-              <input type="url" value={form.externalUrl} onChange={(e) => updateField("externalUrl", e.target.value)} className={inputCls} />
+              <label className="text-sm font-medium text-black">
+                External URL
+              </label>
+              <input
+                type="url"
+                value={form.externalUrl}
+                onChange={(e) => updateField("externalUrl", e.target.value)}
+                className={inputCls}
+              />
             </div>
             <div>
-              <label className="text-sm font-medium text-black">Publication</label>
-              <input type="text" value={form.publication} onChange={(e) => updateField("publication", e.target.value)} className={inputCls} />
+              <label className="text-sm font-medium text-black">
+                Publication
+              </label>
+              <input
+                type="text"
+                value={form.publication}
+                onChange={(e) => updateField("publication", e.target.value)}
+                className={inputCls}
+              />
             </div>
           </>
         )}
       </div>
-      <div className="space-y-5">
-        <div>
+      <div
+        data-lenis-prevent
+        className="space-y-5 rounded-xl bg-neutral-200 p-6 lg:flex lg:min-h-0 lg:flex-col lg:overflow-y-auto"
+      >
+        <div className="flex min-h-[360px] flex-col lg:min-h-0 lg:flex-1">
           <label className="text-sm font-medium text-black">Body</label>
-          <RichTextEditor value={form.body} onChange={(v) => updateField("body", v)} />
+          <div className="min-h-[320px] flex-1 lg:min-h-0">
+            <RichTextEditor
+              value={form.body}
+              onChange={(v) => updateField("body", v)}
+            />
+          </div>
         </div>
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
             <label className="text-sm font-medium text-black">SEO title</label>
-            <input type="text" value={form.seoTitle} onChange={(e) => updateField("seoTitle", e.target.value)} className={inputCls} />
+            <input
+              type="text"
+              value={form.seoTitle}
+              onChange={(e) => updateField("seoTitle", e.target.value)}
+              className={inputCls}
+            />
           </div>
           <div>
-            <label className="text-sm font-medium text-black">SEO description</label>
-            <input type="text" value={form.seoDescription} onChange={(e) => updateField("seoDescription", e.target.value)} className={inputCls} />
+            <label className="text-sm font-medium text-black">
+              SEO description
+            </label>
+            <input
+              type="text"
+              value={form.seoDescription}
+              onChange={(e) => updateField("seoDescription", e.target.value)}
+              className={inputCls}
+            />
           </div>
         </div>
         <div className="flex gap-3">

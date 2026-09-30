@@ -4,7 +4,11 @@ import Image from "next/image";
 import dayjs from "dayjs";
 import type { StorySchema } from "@/backend/models/stories";
 
-const categoryLabels = { spotlight: "Spotlight", insight: "Insight", press: "In the Press" } as const;
+const categoryLabels = {
+  spotlight: "Spotlight",
+  insight: "Insight",
+  press: "In the Press",
+} as const;
 
 function Field({ label, value }: { label: string; value?: string | null }) {
   if (!value) return null;
@@ -32,13 +36,20 @@ export default function StoryDetails({ data }: { data: StorySchema }) {
           <h2 className="break-words text-2xl font-medium leading-tight text-ink">
             {data.title}
           </h2>
-          <p className="max-w-3xl text-base leading-7 text-muted">{data.excerpt}</p>
+          <p className="max-w-3xl text-base leading-7 text-muted">
+            {data.excerpt}
+          </p>
         </header>
 
         {data.mainImageUrl && (
           <figure className="overflow-hidden rounded-lg bg-cream">
             <div className="relative aspect-video">
-              <Image src={data.mainImageUrl} alt={data.mainImageAlt ?? ""} fill className="object-cover" />
+              <Image
+                src={data.mainImageUrl}
+                alt={data.mainImageAlt ?? ""}
+                fill
+                className="object-cover"
+              />
             </div>
             {data.mainImageCaption && (
               <figcaption className="px-4 py-3 text-sm text-muted">

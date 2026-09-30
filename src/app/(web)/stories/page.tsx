@@ -4,10 +4,8 @@ import { ArrowUpRight } from "lucide-react";
 import StoriesBrowser from "@/components/StoriesBrowser";
 import { ButtonLink } from "@/components/ui";
 import { buildStories, categoryLabels, type StoryItem } from "@/lib/stories";
-import { sanityFetch } from "@/sanity/client";
-import { storiesQuery, type StoryCard } from "@/sanity/queries";
+import { fetchAllStories } from "@/lib/firebase-fetch";
 
-// Must be a literal for Next.js; matches REVALIDATE in src/sanity/client.ts.
 export const revalidate = 300;
 
 export const metadata: Metadata = {
@@ -65,8 +63,8 @@ function FeaturedCard({ story }: { story: StoryItem }) {
 }
 
 export default async function StoriesPage() {
-  const cms = await sanityFetch<StoryCard[]>(storiesQuery, {}, []);
-  const { all, featured } = buildStories(cms);
+  const stories = await fetchAllStories();
+  const { all, featured } = buildStories(stories);
 
   return (
     <>

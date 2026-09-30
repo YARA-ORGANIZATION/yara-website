@@ -14,7 +14,9 @@ const themeOptions: { label: string; value: ThemeKey }[] = [
 ];
 
 function toLocalDateTimeValue(date: Date): string {
-  const localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60_000);
+  const localDate = new Date(
+    date.getTime() - date.getTimezoneOffset() * 60_000,
+  );
   return localDate.toISOString().slice(0, 16);
 }
 
@@ -61,7 +63,9 @@ export default function CreateResearchProjectForm({ onSuccess }: Props) {
 
   async function handleSubmit() {
     if (!form.question || !form.researcher || form.themes.length === 0) {
-      toast.error("Please fill in question, researcher and at least one theme.");
+      toast.error(
+        "Please fill in question, researcher and at least one theme.",
+      );
       return;
     }
     setLoading(true);
@@ -96,10 +100,15 @@ export default function CreateResearchProjectForm({ onSuccess }: Props) {
     <div className="h-full min-h-0 w-full flex flex-row px-6 gap-4 pb-4">
       {/* Left: Fields */}
       <div className="flex-none w-[470px] flex flex-col gap-4 h-full min-h-0">
-        <div data-lenis-prevent className="flex-1 min-h-0 p-8 flex flex-col gap-4 bg-neutral-200 rounded-xl overflow-y-auto">
+        <div
+          data-lenis-prevent
+          className="flex-1 min-h-0 p-8 flex flex-col gap-4 bg-neutral-200 rounded-xl overflow-y-auto"
+        >
           <form className="flex flex-col gap-6">
             <div>
-              <label className="text-sm font-medium text-black">Research Question *</label>
+              <label className="text-sm font-medium text-black">
+                Research Question *
+              </label>
               <textarea
                 value={form.question}
                 onChange={(e) => updateField("question", e.target.value)}
@@ -110,7 +119,9 @@ export default function CreateResearchProjectForm({ onSuccess }: Props) {
             </div>
 
             <div>
-              <label className="text-sm font-medium text-black">Researcher *</label>
+              <label className="text-sm font-medium text-black">
+                Researcher *
+              </label>
               <input
                 type="text"
                 value={form.researcher}
@@ -165,7 +176,8 @@ export default function CreateResearchProjectForm({ onSuccess }: Props) {
             {form.themes.map((theme) => (
               <div key={theme}>
                 <label className="text-sm font-medium text-black">
-                  Theme summary ({themeOptions.find((t) => t.value === theme)?.label})
+                  Theme summary (
+                  {themeOptions.find((t) => t.value === theme)?.label})
                 </label>
                 <textarea
                   value={form.themeSummary[theme] ?? ""}
@@ -177,16 +189,22 @@ export default function CreateResearchProjectForm({ onSuccess }: Props) {
             ))}
 
             <div>
-              <label className="text-sm font-medium text-black">Sort order</label>
+              <label className="text-sm font-medium text-black">
+                Sort order
+              </label>
               <input
                 type="number"
                 value={form.sortOrder}
-                onChange={(e) => updateField("sortOrder", parseInt(e.target.value) || 0)}
+                onChange={(e) =>
+                  updateField("sortOrder", parseInt(e.target.value) || 0)
+                }
                 className={inputCls}
               />
             </div>
             <div>
-              <label className="text-sm font-medium text-black">Published at</label>
+              <label className="text-sm font-medium text-black">
+                Published at
+              </label>
               <input
                 type="datetime-local"
                 value={form.publishedAt}
@@ -204,7 +222,9 @@ export default function CreateResearchProjectForm({ onSuccess }: Props) {
             disabled={loading}
             style={{ backgroundColor: "black", color: "white" }}
             className={`w-full flex flex-row justify-center items-center rounded-lg h-[40px] font-semibold text-sm transition-all duration-200 whitespace-nowrap ${
-              loading ? "cursor-not-allowed opacity-30" : "active:scale-[99%] hover:scale-105"
+              loading
+                ? "cursor-not-allowed opacity-30"
+                : "active:scale-[99%] hover:scale-105"
             }`}
           >
             {loading ? "Creating..." : "Create Project"}
@@ -214,7 +234,10 @@ export default function CreateResearchProjectForm({ onSuccess }: Props) {
 
       {/* Right: Content editor */}
       <div className="flex-1 flex rounded-xl flex-col gap-3 h-full overflow-hidden bg-neutral-200 p-6 relative">
-        <RichTextEditor value={form.body} onChange={(v) => updateField("body", v)} />
+        <RichTextEditor
+          value={form.body}
+          onChange={(v) => updateField("body", v)}
+        />
       </div>
     </div>
   );

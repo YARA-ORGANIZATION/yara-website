@@ -5,7 +5,10 @@ import toast from "react-hot-toast";
 import { useAppDispatch } from "@/redux/app/hooks";
 import { createStoryAsync } from "@/redux/features/stories/actions";
 import { processContentImages } from "@/backend/firebase/storage/storage_func";
-import type { CreateStorySchema, StoryCategory } from "@/backend/models/stories";
+import type {
+  CreateStorySchema,
+  StoryCategory,
+} from "@/backend/models/stories";
 import ImageUpload, { type ImageUploadRef } from "../../ImageUpload";
 import RichTextEditor from "../../RichTextEditor";
 
@@ -118,9 +121,16 @@ export default function CreateStoryForm({ onSuccess }: Props) {
     <div className="h-full min-h-0 w-full flex flex-row px-6 gap-4 pb-4">
       {/* Left: Fields */}
       <div className="flex-none w-[470px] flex flex-col gap-4 h-full min-h-0">
-        <div data-lenis-prevent className="flex-1 min-h-0 p-8 flex flex-col gap-4 bg-neutral-200 rounded-xl overflow-y-auto">
+        <div
+          data-lenis-prevent
+          className="flex-1 min-h-0 p-8 flex flex-col gap-4 bg-neutral-200 rounded-xl overflow-y-auto"
+        >
           <form className="flex flex-col gap-6">
-            <ImageUpload ref={imageRef} onImageUpload={setFile} labelText="Cover image" />
+            <ImageUpload
+              ref={imageRef}
+              onImageUpload={setFile}
+              labelText="Cover image"
+            />
 
             <div>
               <label className="text-sm font-medium text-black">Title *</label>
@@ -144,7 +154,9 @@ export default function CreateStoryForm({ onSuccess }: Props) {
             </div>
 
             <div>
-              <label className="text-sm font-medium text-black">Category *</label>
+              <label className="text-sm font-medium text-black">
+                Category *
+              </label>
               <div className="mt-1 flex gap-2">
                 {categories.map((c) => (
                   <button
@@ -164,7 +176,9 @@ export default function CreateStoryForm({ onSuccess }: Props) {
             </div>
 
             <div>
-              <label className="text-sm font-medium text-black">Excerpt *</label>
+              <label className="text-sm font-medium text-black">
+                Excerpt *
+              </label>
               <textarea
                 value={form.excerpt}
                 onChange={(e) => updateField("excerpt", e.target.value)}
@@ -173,7 +187,9 @@ export default function CreateStoryForm({ onSuccess }: Props) {
                 placeholder="Add summary for the story"
                 className={inputCls}
               />
-              <p className="mt-1 text-right text-xs text-neutral-400">{form.excerpt.length}/3000</p>
+              <p className="mt-1 text-right text-xs text-neutral-400">
+                {form.excerpt.length}/3000
+              </p>
             </div>
 
             <div>
@@ -188,7 +204,9 @@ export default function CreateStoryForm({ onSuccess }: Props) {
             </div>
 
             <div>
-              <label className="text-sm font-medium text-black">Published at</label>
+              <label className="text-sm font-medium text-black">
+                Published at
+              </label>
               <input
                 type="datetime-local"
                 value={form.publishedAt}
@@ -218,7 +236,9 @@ export default function CreateStoryForm({ onSuccess }: Props) {
             </div>
 
             <div>
-              <label className="text-sm font-medium text-black">Image alt text</label>
+              <label className="text-sm font-medium text-black">
+                Image alt text
+              </label>
               <input
                 type="text"
                 value={form.mainImageAlt}
@@ -230,7 +250,9 @@ export default function CreateStoryForm({ onSuccess }: Props) {
             {form.category === "press" && (
               <>
                 <div>
-                  <label className="text-sm font-medium text-black">External URL</label>
+                  <label className="text-sm font-medium text-black">
+                    External URL
+                  </label>
                   <input
                     type="url"
                     value={form.externalUrl}
@@ -239,7 +261,9 @@ export default function CreateStoryForm({ onSuccess }: Props) {
                   />
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-black">Publication</label>
+                  <label className="text-sm font-medium text-black">
+                    Publication
+                  </label>
                   <input
                     type="text"
                     value={form.publication}
@@ -259,7 +283,9 @@ export default function CreateStoryForm({ onSuccess }: Props) {
             disabled={loading}
             style={{ backgroundColor: "black", color: "white" }}
             className={`w-full flex flex-row justify-center items-center rounded-lg h-[40px] font-semibold text-sm transition-all duration-200 whitespace-nowrap ${
-              loading ? "cursor-not-allowed opacity-30" : "active:scale-[99%] hover:scale-105"
+              loading
+                ? "cursor-not-allowed opacity-30"
+                : "active:scale-[99%] hover:scale-105"
             }`}
           >
             {loading ? "Creating..." : "Create Story"}
@@ -269,7 +295,10 @@ export default function CreateStoryForm({ onSuccess }: Props) {
 
       {/* Right: Content editor */}
       <div className="flex-1 flex rounded-xl flex-col gap-3 h-full overflow-hidden bg-neutral-200 p-6 relative">
-        <RichTextEditor value={form.body} onChange={(v) => updateField("body", v)} />
+        <RichTextEditor
+          value={form.body}
+          onChange={(v) => updateField("body", v)}
+        />
       </div>
     </div>
   );

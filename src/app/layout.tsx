@@ -43,8 +43,14 @@ export const metadata: Metadata = {
     siteName: site.name,
     locale: "en_GB",
     url: "/",
+    images: [{ url: "/page-image.png", width: 1200, height: 630, alt: "YARA – Young Africans Research Academy" }],
   },
-  twitter: { card: "summary_large_image", site: "@yara_research", creator: "@yara_research" },
+  twitter: {
+    card: "summary_large_image",
+    site: "@yara_research",
+    creator: "@yara_research",
+    images: ["/page-image.png"],
+  },
   other: {
     "GPTBot": "index, follow",
     "ClaudeBot": "index, follow",

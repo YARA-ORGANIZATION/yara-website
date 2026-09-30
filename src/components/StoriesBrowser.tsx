@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { ArrowUpRight, ChevronDown, ChevronLeft, ChevronRight, Search } from "lucide-react";
 import type { ThemeKey } from "@/lib/research";
 import { categoryLabels, type StoryItem } from "@/lib/stories";
-import type { StoryCategory } from "@/sanity/queries";
+import type { StoryCategory } from "@/backend/models/stories";
 import { cx } from "./ui";
 
 const PAGE_SIZE = 15;
