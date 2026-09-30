@@ -6,6 +6,7 @@ import { site } from "@/lib/site";
 import { fetchStoryBySlug, fetchStorySlugs } from "@/lib/firebase-fetch";
 
 export const dynamicParams = true;
+export const revalidate = 60;
 
 const categoryLabel = { spotlight: "Spotlight", insight: "Insight", press: "In the Press" } as const;
 

@@ -5,6 +5,8 @@ import { ButtonLink } from "@/components/ui";
 import { fetchAllStories } from "@/lib/firebase-fetch";
 import StoriesCategoryFilter from "./StoriesCategoryFilter";
 
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "Stories",
   description:
