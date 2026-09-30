@@ -13,6 +13,11 @@ const themeOptions: { label: string; value: ThemeKey }[] = [
   { label: "Public Health", value: "health" },
 ];
 
+function toLocalDateTimeValue(date: Date): string {
+  const localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60_000);
+  return localDate.toISOString().slice(0, 16);
+}
+
 interface Props {
   onSuccess: () => void;
 }
@@ -28,7 +33,7 @@ export default function CreateResearchProjectForm({ onSuccess }: Props) {
     summary: "",
     body: "",
     sortOrder: 0,
-    publishedAt: new Date().toISOString().slice(0, 16),
+    publishedAt: toLocalDateTimeValue(new Date()),
     themeSummary: {} as Partial<Record<ThemeKey, string>>,
   });
 
