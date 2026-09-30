@@ -71,14 +71,6 @@ export default function IntroAnimation() {
           100% { opacity: 0; }
         }
 
-        .intro-content-blur {
-          animation: contentReveal 600ms ease-out 1800ms both;
-        }
-
-        @keyframes contentReveal {
-          0%   { opacity: 0.01; }
-          100% { opacity: 1; }
-        }
       `}</style>
 
       <div className="intro-overlay" key={key} aria-hidden="true">
