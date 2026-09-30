@@ -1,7 +1,5 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/lib/site";
-import { sanityFetch } from "@/sanity/client";
-import { storySlugsQuery } from "@/sanity/queries";
 
 const routes = [
   "",
@@ -32,13 +30,9 @@ const routes = [
   "/terms",
 ];
 
-export const revalidate = 3600;
-
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const lastModified = new Date("2026-09-29");
-  const slugs = await sanityFetch<string[]>(storySlugsQuery, {}, []);
-  const all = [...routes, ...slugs.map((s) => `/stories/${s}`).filter((p) => !routes.includes(p))];
-  return all.map((path) => ({
+export default function sitemap(): MetadataRoute.Sitemap {
+  const lastModified = new Date();
+  return routes.map((path) => ({
     url: `${site.url}${path}`,
     lastModified,
     changeFrequency: path === "" || path === "/opportunities" || path === "/symposium-2026" ? "weekly" : "monthly",

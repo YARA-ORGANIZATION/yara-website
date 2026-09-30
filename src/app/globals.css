@@ -1,7 +1,63 @@
 @import "tailwindcss";
 
+/* Primary Font - Aeonik */
+@font-face {
+  font-family: "Aeonik";
+  src: url("../../public/fonts/Aeonik-Thin.ttf");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Aeonik";
+  src: url("../../public/fonts/Aeonik-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Aeonik";
+  src: url("../../public/fonts/Aeonik-RegularItalic.ttf");
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Aeonik";
+  src: url("../../public/fonts/Aeonik-Medium.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Aeonik";
+  src: url("../../public/fonts/Aeonik-MediumItalic.ttf");
+  font-weight: 500;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Aeonik";
+  src: url("../../public/fonts/Aeonik-Bold.ttf");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Aeonik";
+  src: url("../../public/fonts/Aeonik-BoldItalic.ttf");
+  font-weight: 600;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Aeonik";
+  src: url("../../public/fonts/Aeonik-Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Aeonik";
+  src: url("../../public/fonts/Aeonik-Black.ttf");
+  font-weight: 800;
+  font-style: normal;
+}
+
 @theme {
-  --color-cream: #fcf8ee;
+  --color-cream: #FFFDFA;
   --color-cream-deep: #f4eedd;
   --color-forest: #3b4a2f;
   --color-forest-deep: #2e3a24;
@@ -12,24 +68,132 @@
   --color-line: #e3dccb;
   --color-charcoal: #222320;
 
-  --font-sans: var(--font-neue), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Aeonik", ui-sans-serif, system-ui, sans-serif;
 
   --radius-card: 1.25rem;
   --radius-panel: 2rem;
+}
+
+body {
+  font-family: "Aeonik", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+  color: var(--color-ink);
+  background: var(--color-cream);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Blur reveal animation */
+.blurReveal {
+  opacity: 0;
+  filter: blur(12px);
+  transform: translateY(12px);
+}
+.blurRevealActive {
+  animation: blurRevealIn 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes blurRevealIn {
+  0%   { opacity: 0; filter: blur(12px); transform: translateY(12px); }
+  100% { opacity: 1; filter: blur(0px); transform: translateY(0); }
+}
+
+/* Font weight utilities */
+@utility primarynormal {
+  font-family: "Aeonik", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+}
+
+@utility primarymedium {
+  font-family: "Aeonik", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 500;
+}
+
+@utility primarybold {
+  font-family: "Aeonik", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+}
+
+@utility primaryblack {
+  font-family: "Aeonik", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 800;
+}
+
+/* Text style components */
+.text-bold-3xl {
+  font-family: "Aeonik"; font-weight: 600;
+  margin-bottom: 0; font-size: 33px; line-height: 2rem; letter-spacing: 0.5px;
+}
+@media (min-width: 768px) { .text-bold-3xl { font-size: 2.25rem; } }
+@media (min-width: 1024px) { .text-bold-3xl { font-size: 3rem; } }
+
+.text-bold-2xl {
+  font-family: "Aeonik"; font-weight: 600;
+  margin-bottom: 0; font-size: 28px; line-height: 2rem; letter-spacing: 0.5px;
+}
+@media (min-width: 768px) { .text-bold-2xl { font-size: 2.25rem; } }
+
+.text-bold-xl {
+  font-family: "Aeonik"; font-weight: 600;
+  margin-bottom: 0; font-size: 1.5rem; letter-spacing: 0.5px;
+}
+@media (min-width: 768px) { .text-bold-xl { font-size: 1.875rem; } }
+
+.text-bold-lg {
+  font-family: "Aeonik"; font-weight: 600;
+  margin-bottom: 0; font-size: 1.25rem; letter-spacing: 0.5px;
+}
+
+.text-bold-sm {
+  font-family: "Aeonik"; font-weight: 600;
+  margin-bottom: 0; font-size: 15px;
+}
+@media (min-width: 768px) { .text-bold-sm { font-size: 0.875rem; } }
+
+.text-normal-base {
+  font-family: "Aeonik"; font-weight: 400;
+  margin-bottom: 0; font-size: 1rem; overflow-wrap: break-word;
+}
+@media (min-width: 768px) { .text-normal-base { font-size: 1.125rem; } }
+
+.text-normal-sm {
+  font-family: "Aeonik"; font-weight: 400;
+  margin-bottom: 0; font-size: 15px;
+}
+@media (min-width: 768px) { .text-normal-sm { font-size: 0.875rem; } }
+
+.text-normal-lg {
+  font-family: "Aeonik"; font-weight: 400;
+  margin-bottom: 0; font-size: 1.125rem;
+}
+
+.text-section-header {
+  font-family: "Aeonik"; font-weight: 600;
+  text-transform: uppercase; margin-bottom: 0; font-size: 0.875rem; letter-spacing: 10px;
+}
+@media (min-width: 768px) { .text-section-header { font-size: 16px; } }
+
+@utility container-site {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  @media (width >= 48rem) {
+    padding-inline: 2.5rem;
+  }
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@utility text-pretty {
+  text-wrap: pretty;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
-  }
-
-  body {
-    background: var(--color-cream);
-    color: var(--color-ink);
-    font-feature-settings: "ss01", "kern";
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
   }
 
   ::selection {
@@ -60,22 +224,14 @@
   }
 }
 
-@utility container-site {
-  width: 100%;
-  max-width: 80rem;
-  margin-inline: auto;
-  padding-inline: 1.25rem;
-  @media (width >= 48rem) {
-    padding-inline: 2.5rem;
-  }
-}
-
-@utility text-balance {
-  text-wrap: balance;
-}
-
-@utility text-pretty {
-  text-wrap: pretty;
+.text-input,
+.text-input:focus,
+.text-input:hover,
+input[type="text"]:focus,
+input[type="number"]:focus,
+input:focus {
+  box-shadow: none !important;
+  outline: none !important;
 }
 
 .prose-yara p {
@@ -96,4 +252,41 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-forest);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.quill.ql-no-border .ql-toolbar {
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 1px solid #ccc;
+}
+
+.quill.ql-no-border .ql-container {
+  overflow-y: auto;
+  flex: 1 1 0%;
+  height: 100%;
+  background-color: white;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+}
+
+.ql-tooltip {
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  max-width: 90vw;
+  z-index: 9999;
+}
+
+.ql-video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
 }

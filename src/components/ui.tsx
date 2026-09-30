@@ -53,7 +53,7 @@ export function ButtonLink({
     <Linkish
       href={href}
       className={cx(
-        "group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[0.9375rem] font-medium transition-colors",
+        "primarymedium group inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-[0.9375rem] transition-colors",
         buttonStyles[variant],
         className,
       )}
@@ -167,7 +167,7 @@ export function SectionHeading({
         <h2
           id={id}
           className={cx(
-            "text-balance text-3xl font-medium leading-[1.1] tracking-tight md:text-5xl",
+            "primarymedium text-balance text-3xl leading-[1.1] tracking-tight md:text-5xl",
             tone === "light" ? "text-white" : "text-forest",
           )}
         >
@@ -220,14 +220,14 @@ export function PageHero({
             )}
             <h1
               className={cx(
-                "text-balance text-4xl font-medium leading-[1.05] tracking-tight sm:text-5xl md:text-6xl",
+                "primarymedium text-balance text-4xl leading-[1.05] tracking-tight sm:text-5xl md:text-6xl",
                 tones.h,
               )}
             >
               {title}
             </h1>
             {lede && (
-              <div className={cx("mt-6 max-w-2xl space-y-4 text-pretty text-lg leading-relaxed md:text-xl", tones.p)}>
+              <div className={cx("primarynormal mt-6 max-w-2xl space-y-4 text-pretty text-lg leading-relaxed md:text-xl", tones.p)}>
                 {lede}
               </div>
             )}
@@ -332,5 +332,5 @@ export function Arcs({ className }: { className?: string }) {
 }
 
 export function Prose({ children, className }: { children: ReactNode; className?: string }) {
-  return <div className={cx("prose-yara max-w-2xl text-lg", className)}>{children}</div>;
+  return <div className={cx("primarynormal prose-yara max-w-2xl text-lg", className)}>{children}</div>;
 }

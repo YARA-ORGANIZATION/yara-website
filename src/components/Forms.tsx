@@ -15,7 +15,7 @@ function SubmitButton({ children, tone }: { children: ReactNode; tone: "light" |
       type="submit"
       disabled={pending}
       className={cx(
-        "group inline-flex shrink-0 items-center justify-center gap-2 rounded-full px-6 py-3 font-medium transition-colors disabled:opacity-60",
+        "group inline-flex shrink-0 items-center justify-center gap-2 rounded-xl px-6 py-3 font-medium transition-colors disabled:opacity-60",
         tone === "dark" ? "bg-lime text-forest-deep hover:bg-[#cdeb57]" : "bg-forest text-lime hover:bg-forest-deep",
       )}
     >
@@ -79,7 +79,7 @@ export function NewsletterForm({
   return (
     <form action={action} className="relative w-full max-w-xl">
       <Honeypot />
-      <label htmlFor={`${id}-email`} className={cx("mb-2 block text-sm", tone === "dark" ? "text-white/80" : "text-muted")}>
+      <label htmlFor={`${id}-email`} className="sr-only">
         Email address
       </label>
       <div className="flex flex-col gap-3 sm:flex-row">
@@ -91,7 +91,7 @@ export function NewsletterForm({
           autoComplete="email"
           placeholder="you@example.com"
           className={cx(
-            "min-w-0 flex-1 rounded-full px-5 py-3 text-base outline-none transition focus:ring-2",
+            "min-w-0 flex-1 rounded-xl px-5 py-3 text-base outline-none transition focus:ring-2",
             tone === "dark"
               ? "bg-white text-ink placeholder:text-ink/40 focus:ring-lime"
               : "bg-white text-ink ring-1 ring-line placeholder:text-ink/40 focus:ring-forest",

@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { projects, type ThemeKey } from "@/lib/research";
+import type { ThemeKey } from "@/lib/research";
+import type { ResearchProjectSchema } from "@/backend/models/research_projects";
 import { cx } from "./ui";
 import { ProjectCard } from "./ProjectCard";
 
@@ -12,7 +13,7 @@ const filters: { key: ThemeKey | "all"; label: string }[] = [
   { key: "health", label: "Public Health" },
 ];
 
-export default function ResearchExplorer() {
+export default function ResearchExplorer({ projects }: { projects: ResearchProjectSchema[] }) {
   const [active, setActive] = useState<ThemeKey | "all">("all");
   const shown = active === "all" ? projects : projects.filter((p) => p.themes.includes(active));
 
@@ -39,7 +40,7 @@ export default function ResearchExplorer() {
       </p>
       <ul className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {shown.map((p) => (
-          <ProjectCard key={p.researcher} project={p} />
+          <ProjectCard key={p.id} project={p} />
         ))}
       </ul>
     </div>

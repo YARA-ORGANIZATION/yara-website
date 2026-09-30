@@ -1,18 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local";
 import { site } from "@/lib/site";
+import Providers from "@/components/Providers";
 import "./globals.css";
-
-const neue = localFont({
-  src: [
-    { path: "./fonts/NeueHaasDisplayLight.ttf", weight: "300", style: "normal" },
-    { path: "./fonts/NeueHaasDisplayRoman.ttf", weight: "400", style: "normal" },
-    { path: "./fonts/NeueHaasDisplayMedium.ttf", weight: "500", style: "normal" },
-    { path: "./fonts/NeueHaasDisplayBold.ttf", weight: "600", style: "normal" },
-  ],
-  variable: "--font-neue",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -22,17 +11,52 @@ export const metadata: Metadata = {
   },
   description: site.description,
   applicationName: site.name,
+  keywords: [
+    "YARA",
+    "Young Africans Research Academy",
+    "African research",
+    "research talent",
+    "artificial intelligence",
+    "climate research",
+    "public health",
+    "STEM fellowship",
+    "research mentorship",
+    "Ghana",
+    "Africa",
+  ],
+  robots: {
+    index: true,
+    follow: true,
+    "max-snippet": -1,
+    "max-image-preview": "large",
+    "max-video-preview": -1,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
     type: "website",
     siteName: site.name,
     locale: "en_GB",
     url: "/",
   },
-  twitter: { card: "summary_large_image", site: "@yara_research" },
+  twitter: { card: "summary_large_image", site: "@yara_research", creator: "@yara_research" },
+  other: {
+    "GPTBot": "index, follow",
+    "ClaudeBot": "index, follow",
+    "Google-Extended": "index, follow",
+    "PerplexityBot": "index, follow",
+    "CCBot": "index, follow",
+  },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fcf8ee",
+  themeColor: "#FFFDFA",
+  viewportFit: "cover",
 };
 
 const orgJsonLd = {
@@ -54,13 +78,13 @@ const orgJsonLd = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-GB" className={neue.variable}>
-      <body className="font-sans">
+    <html lang="en-GB">
+      <body>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
         />
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
