@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { CalendarDays, Clock, MapPin } from "lucide-react";
-import { Photo } from "@/components/Art";
-import { ArrowLink, ButtonLink, Eyebrow, PageHero, Section, SectionHeading, ThemeIcon } from "@/components/ui";
+import BlurReveal, { BlurRevealItem } from "@/components/BlurReveal";
+import { ArrowLink, ButtonLink, Eyebrow, ThemeIcon } from "@/components/ui";
 import { symposium } from "@/lib/site";
 import type { ThemeKey } from "@/lib/research";
 
@@ -24,7 +25,7 @@ const researchInView: { theme: ThemeKey; title: string; body: string }[] = [
   {
     theme: "climate",
     title: "Climate",
-    body: "Research includes projected dry-day patterns over Ghana and long-term sea-surface temperature change in Ghana’s Exclusive Economic Zone.",
+    body: "Research includes projected dry-day patterns over Ghana and long-term sea-surface temperature change in Ghana's Exclusive Economic Zone.",
   },
   {
     theme: "health",
@@ -70,15 +71,15 @@ function EventFacts({ className }: { className?: string }) {
   return (
     <ul className={className}>
       <li className="flex items-center gap-3">
-        <CalendarDays aria-hidden className="size-5 shrink-0" />
+        <CalendarDays aria-hidden className="size-5 shrink-0 text-[#D5F673]" />
         {symposium.date}
       </li>
       <li className="flex items-center gap-3">
-        <Clock aria-hidden className="size-5 shrink-0" />
+        <Clock aria-hidden className="size-5 shrink-0 text-[#D5F673]" />
         {symposium.time}
       </li>
       <li className="flex items-center gap-3">
-        <MapPin aria-hidden className="size-5 shrink-0" />
+        <MapPin aria-hidden className="size-5 shrink-0 text-[#D5F673]" />
         {symposium.venue}
       </li>
     </ul>
@@ -89,176 +90,317 @@ export default function SymposiumPage() {
   const isPast = Date.now() > symposium.endsAt.getTime();
 
   return (
-    <>
-      <PageHero
-        eyebrow="YARA Inaugural Research Symposium 2026"
-        tone="lime"
-        title="Indigenous Research Renaissance: From Inquiry to Impact"
-        lede={
-          <>
-            <EventFacts className="space-y-2 text-base font-medium md:text-lg" />
-            <p>
-              The inaugural YARA Fellows will present the research they are pursuing and bring it into conversation with
-              researchers, universities, public institutions, industry and funders.
-            </p>
-          </>
-        }
-        aside={
-          <Photo
-            src="/images/brand/venue-building.jpg"
-            alt="A modern conference building surrounded by greenery"
-            className="hidden aspect-[4/3] lg:block"
-            priority
+    <div className="bg-[#111111]">
+      {/* ── HERO ── */}
+      <section aria-labelledby="hero-title" className="relative overflow-hidden" style={{ backgroundColor: "#111111" }}>
+        {/* Desktop decorative vector */}
+        <div className="absolute right-0 top-0 bottom-0 hidden w-2/5 md:block">
+          <Image
+            src="/vectors/syposium-vector.svg"
+            alt=""
+            fill
+            aria-hidden
+            className="object-cover object-left"
           />
-        }
-      >
-        {isPast ? (
-          <ButtonLink href="#watch">Watch the presentations</ButtonLink>
-        ) : (
-          <>
-            <ButtonLink href={symposium.registerUrl}>Register to attend</ButtonLink>
-            <p className="text-sm text-forest-deep/80">Registration closes Friday, {symposium.registrationDeadline}.</p>
-          </>
-        )}
-      </PageHero>
-
-      <Section labelledBy="why">
-        <div className="grid gap-10 md:grid-cols-2 md:gap-16">
-          <div>
-            <Eyebrow className="mb-4">Why the Symposium</Eyebrow>
-            <h2 id="why" className="sr-only">
-              Why the Symposium
-            </h2>
-            <p className="text-pretty text-xl leading-relaxed text-ink md:text-2xl">
-              The Symposium brings YARA’s first Research Fellowship cohort into public view. Ten Fellows are developing
-              original work with structured training and mentor support. On 30 September, they will present that work,
-              respond to questions and meet people and institutions that may be able to strengthen, publish, use or
-              extend it.
-            </p>
-          </div>
-          <div className="rounded-[var(--radius-card)] bg-white p-7 ring-1 ring-line md:p-9">
-            <Eyebrow>The theme</Eyebrow>
-            <h3 className="mt-4 text-2xl font-medium tracking-tight text-forest">
-              Indigenous Research Renaissance: From Inquiry to Impact
-            </h3>
-            <p className="mt-4 leading-relaxed text-ink/85">
-              The theme starts with a simple proposition: African researchers should be able to ask questions from within
-              the societies they know, work with evidence relevant to those settings and contribute to the knowledge
-              used to understand them.
-            </p>
-            <p className="mt-4 leading-relaxed text-ink/85">
-              “From Inquiry to Impact” asks what can happen when a research question becomes credible work. Some research
-              may lead to further study. Some may inform policy or institutional decisions. Some may find applications in
-              technology or industry. The Symposium creates a place for those next conversations to begin.
-            </p>
-          </div>
         </div>
-      </Section>
 
-      <Section tone="forest" labelledBy="in-view">
-        <SectionHeading id="in-view" tone="light" title="Research in public view" />
-        <ul className="mt-10 grid gap-5 md:grid-cols-3">
-          {researchInView.map((r) => (
-            <li key={r.title} className="rounded-[var(--radius-card)] bg-lime p-7 text-forest-deep">
-              <ThemeIcon theme={r.theme} />
-              <h3 className="mt-5 text-xl font-medium tracking-tight">{r.title}</h3>
-              <p className="mt-3 leading-relaxed text-forest-deep/85">{r.body}</p>
-            </li>
-          ))}
-        </ul>
-        <ArrowLink href="/research" className="mt-10 text-lime">
-          Explore the research
-        </ArrowLink>
-      </Section>
+        <BlurReveal className="relative grid grid-cols-[80%_20%] md:block">
+          <div className="px-5 pt-32 pb-20 md:container-site md:grid md:min-h-[85vh] md:items-center md:grid-cols-[3fr_2fr] md:pt-40 md:pb-24">
+            <div className="max-w-2xl">
+              <BlurRevealItem>
+                <Image
+                  src="/vectors/syposium-text.svg"
+                  alt="Symposium 2026"
+                  width={400}
+                  height={120}
+                  className="h-auto w-56 md:w-72"
+                />
+              </BlurRevealItem>
 
-      <Section labelledBy="programme">
-        <SectionHeading id="programme" eyebrow="Programme" title="The Symposium Programme" />
-        <ol className="mt-10 divide-y divide-line overflow-hidden rounded-[var(--radius-card)] bg-white ring-1 ring-line">
-          {programme.map((p) => (
-            <li key={p.time} className="grid gap-2 p-6 md:grid-cols-[10rem_1fr] md:gap-8 md:p-8">
-              <span className="text-sm font-semibold tracking-[0.12em] text-forest uppercase">{p.time}</span>
+              <BlurRevealItem delay={0.1}>
+                <Eyebrow tone="lime" className="mt-8">YARA Inaugural Research Symposium</Eyebrow>
+              </BlurRevealItem>
+
+              <BlurRevealItem delay={0.2}>
+                <h1
+                  id="hero-title"
+                  className="primarybold mt-5 text-3xl leading-tight tracking-tight text-white uppercase md:text-5xl"
+                >
+                  Indigenous Research Renaissance: From Inquiry to Impact
+                </h1>
+              </BlurRevealItem>
+
+              <BlurRevealItem delay={0.3}>
+                <p className="primarynormal mt-6 text-base leading-relaxed text-white/75 md:text-lg">
+                  The inaugural YARA Fellows will present the research they are pursuing and bring it into conversation
+                  with researchers, universities, public institutions, industry and funders.
+                </p>
+              </BlurRevealItem>
+
+              <BlurRevealItem delay={0.4}>
+                <EventFacts className="mt-6 space-y-2 text-base primarymedium text-white" />
+              </BlurRevealItem>
+
+              <BlurRevealItem delay={0.5}>
+                <div className="mt-8 flex flex-wrap items-center gap-4">
+                  {isPast ? (
+                    <ButtonLink href="#watch" variant="lime">Watch the presentations</ButtonLink>
+                  ) : (
+                    <>
+                      <ButtonLink href={symposium.registerUrl} variant="lime">Register to attend</ButtonLink>
+                      <p className="text-sm text-white/50">
+                        Registration closes Friday, {symposium.registrationDeadline}.
+                      </p>
+                    </>
+                  )}
+                </div>
+              </BlurRevealItem>
+            </div>
+          </div>
+
+          {/* Mobile decorative vector */}
+          <div className="relative overflow-hidden md:hidden">
+            <Image
+              src="/vectors/syposium-vector.svg"
+              alt=""
+              fill
+              aria-hidden
+              className="object-cover object-left"
+            />
+          </div>
+        </BlurReveal>
+      </section>
+
+      {/* ── WHY THE SYMPOSIUM ── */}
+      <section aria-labelledby="why" className="py-16 md:py-24" style={{ backgroundColor: "#111111" }}>
+        <div className="container-site">
+          <BlurReveal>
+            <div className="grid gap-10 md:grid-cols-2 md:gap-16">
               <div>
-                <h3 className="text-xl font-medium tracking-tight text-ink">{p.title}</h3>
-                <p className="mt-2 leading-relaxed text-ink/75">{p.body}</p>
+                <BlurRevealItem>
+                  <Eyebrow tone="lime" className="mb-4">Why the Symposium</Eyebrow>
+                  <h2 id="why" className="sr-only">Why the Symposium</h2>
+                </BlurRevealItem>
+                <BlurRevealItem delay={0.1}>
+                  <p className="primarynormal text-pretty text-xl leading-relaxed text-white md:text-2xl">
+                    The Symposium brings YARA&apos;s first Research Fellowship cohort into public view. Ten Fellows are
+                    developing original work with structured training and mentor support. On 30 September, they will
+                    present that work, respond to questions and meet people and institutions that may be able to
+                    strengthen, publish, use or extend it.
+                  </p>
+                </BlurRevealItem>
               </div>
-            </li>
-          ))}
-        </ol>
-      </Section>
 
-      {speakers.length > 0 && (
-        <Section tone="white" labelledBy="speakers">
-          <SectionHeading
-            id="speakers"
-            eyebrow="The panel"
-            title="Speakers & Chairs"
-            intro="Researchers, institutional leaders and practitioners will join the inaugural Fellows in conversations throughout the day."
-          />
-          <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {speakers.map((s) => (
-              <li key={s.name} className="rounded-[var(--radius-card)] bg-cream p-6 ring-1 ring-line">
-                <p className="text-xs font-semibold tracking-[0.12em] text-forest uppercase">{s.part}</p>
-                <h3 className="mt-3 text-lg font-medium text-ink">{s.name}</h3>
-                <p className="mt-1 text-ink/70">{s.role}</p>
-              </li>
-            ))}
-          </ul>
-        </Section>
-      )}
-
-      <Section tone="cream-deep" labelledBy="attend">
-        <div className="grid items-center gap-10 md:grid-cols-2 md:gap-16">
-          <Photo
-            src="/images/brand/workshop-table.jpg"
-            alt="Researchers and delegates in discussion around a table"
-            className="aspect-[4/3]"
-          />
-          <div>
-            <SectionHeading id="attend" eyebrow="Delegates" title="Who Should Attend?" />
-            <p className="mt-5 text-pretty text-xl leading-relaxed text-ink">
-              Researchers and academics, public institutions, industry and technical teams, funders and development
-              organisations, students and emerging researchers.
-            </p>
-          </div>
+              <BlurRevealItem delay={0.2}>
+                <div className="rounded-2xl bg-[#1a1a1a] p-7 ring-1 ring-white/10 md:p-9">
+                  <Eyebrow tone="lime">The theme</Eyebrow>
+                  <h3 className="primarymedium mt-4 text-2xl tracking-tight text-[#D5F673]">
+                    Indigenous Research Renaissance: From Inquiry to Impact
+                  </h3>
+                  <p className="primarynormal mt-4 leading-relaxed text-white/75">
+                    The theme starts with a simple proposition: African researchers should be able to ask questions from
+                    within the societies they know, work with evidence relevant to those settings and contribute to the
+                    knowledge used to understand them.
+                  </p>
+                  <p className="primarynormal mt-4 leading-relaxed text-white/75">
+                    &ldquo;From Inquiry to Impact&rdquo; asks what can happen when a research question becomes credible
+                    work. Some research may lead to further study. Some may inform policy or institutional decisions. Some
+                    may find applications in technology or industry. The Symposium creates a place for those next
+                    conversations to begin.
+                  </p>
+                </div>
+              </BlurRevealItem>
+            </div>
+          </BlurReveal>
         </div>
-      </Section>
+      </section>
 
-      {!isPast && (
-        <section aria-labelledby="register" className="bg-lime py-14 md:py-16">
-          <div className="container-site flex flex-col items-center text-center">
-            <h2 id="register" className="text-2xl font-medium tracking-tight text-forest-deep md:text-3xl">
-              Registration is required.
-            </h2>
-            <EventFacts className="mt-5 flex flex-col items-center gap-2 text-forest-deep/85 md:flex-row md:gap-6" />
-            <ButtonLink href={symposium.registerUrl} className="mt-7">
-              Register to attend
-            </ButtonLink>
-            <p className="mt-4 text-sm text-forest-deep/75">Registration deadline: {symposium.registrationDeadline}.</p>
+      {/* ── RESEARCH IN PUBLIC VIEW ── */}
+      <section aria-labelledby="in-view" className="py-16 md:py-24" style={{ backgroundColor: "#0d0d0d" }}>
+        <div className="container-site">
+          <BlurReveal>
+            <BlurRevealItem>
+              <div className="max-w-3xl">
+                <Eyebrow tone="lime" className="mb-4">Research</Eyebrow>
+                <h2
+                  id="in-view"
+                  className="primarymedium text-balance text-3xl leading-[1.1] tracking-tight text-white md:text-5xl"
+                >
+                  Research in public view
+                </h2>
+              </div>
+            </BlurRevealItem>
+
+            <ul className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3">
+              {researchInView.map((r, i) => (
+                <BlurRevealItem key={r.title} delay={0.1 + i * 0.1} className="h-full">
+                  <li className="flex h-full flex-col rounded-2xl bg-[#1a1a1a] p-7 ring-1 ring-white/10">
+                    <ThemeIcon theme={r.theme} tone="lime" />
+                    <h3 className="primarymedium mt-5 text-xl tracking-tight text-white">{r.title}</h3>
+                    <p className="primarynormal mt-3 flex-1 leading-relaxed text-white/70">{r.body}</p>
+                  </li>
+                </BlurRevealItem>
+              ))}
+            </ul>
+
+            <BlurRevealItem delay={0.5}>
+              <ArrowLink href="/research" className="mt-10 text-[#D5F673]">
+                Explore the research
+              </ArrowLink>
+            </BlurRevealItem>
+          </BlurReveal>
+        </div>
+      </section>
+
+      {/* ── PROGRAMME ── */}
+      <section aria-labelledby="programme" className="py-16 md:py-24" style={{ backgroundColor: "#111111" }}>
+        <div className="container-site">
+          <BlurReveal>
+            <BlurRevealItem>
+              <div className="max-w-3xl">
+                <Eyebrow tone="lime" className="mb-4">Schedule</Eyebrow>
+                <h2
+                  id="programme"
+                  className="primarymedium text-balance text-3xl leading-[1.1] tracking-tight text-white md:text-5xl"
+                >
+                  Programme
+                </h2>
+              </div>
+            </BlurRevealItem>
+
+            <ol className="mt-10 divide-y divide-white/10 overflow-hidden rounded-2xl bg-[#1a1a1a] ring-1 ring-white/10">
+              {programme.map((p, i) => (
+                <BlurRevealItem key={p.time} delay={0.1 + i * 0.1}>
+                  <li className="grid gap-2 p-6 md:grid-cols-[10rem_1fr] md:gap-8 md:p-8">
+                    <span className="primarybold text-sm tracking-[0.12em] text-[#D5F673] uppercase">{p.time}</span>
+                    <div>
+                      <h3 className="primarymedium text-xl tracking-tight text-white">{p.title}</h3>
+                      <p className="primarynormal mt-2 leading-relaxed text-white/70">{p.body}</p>
+                    </div>
+                  </li>
+                </BlurRevealItem>
+              ))}
+            </ol>
+          </BlurReveal>
+        </div>
+      </section>
+
+      {/* ── SPEAKERS (hidden until populated) ── */}
+      {speakers.length > 0 && (
+        <section aria-labelledby="speakers" className="py-16 md:py-24" style={{ backgroundColor: "#0d0d0d" }}>
+          <div className="container-site">
+            <BlurReveal>
+              <BlurRevealItem>
+                <div className="max-w-3xl">
+                  <Eyebrow tone="lime" className="mb-4">People</Eyebrow>
+                  <h2
+                    id="speakers"
+                    className="primarymedium text-balance text-3xl leading-[1.1] tracking-tight text-white md:text-5xl"
+                  >
+                    Speakers &amp; Chairs
+                  </h2>
+                  <p className="primarynormal mt-5 text-pretty text-lg leading-relaxed text-white/75">
+                    Researchers, institutional leaders and practitioners will join the inaugural Fellows in conversations
+                    throughout the day.
+                  </p>
+                </div>
+              </BlurRevealItem>
+
+              <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {speakers.map((s, i) => (
+                  <BlurRevealItem key={s.name} delay={0.1 + i * 0.1}>
+                    <li className="rounded-2xl bg-[#1a1a1a] p-6 ring-1 ring-white/10">
+                      <p className="primarybold text-xs tracking-[0.12em] text-[#D5F673] uppercase">{s.part}</p>
+                      <h3 className="primarymedium mt-3 text-lg text-white">{s.name}</h3>
+                      <p className="primarynormal mt-1 text-white/60">{s.role}</p>
+                    </li>
+                  </BlurRevealItem>
+                ))}
+              </ul>
+            </BlurReveal>
           </div>
         </section>
       )}
 
-      <Section id="after" labelledBy="after-heading">
-        <SectionHeading
-          id="after-heading"
-          eyebrow="After the Symposium"
-          intro="After 30 September, this page becomes the permanent home for the event archive."
-        />
-        <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {archive.map((a) => (
-            <li key={a.id} id={a.href ? undefined : a.id} className="rounded-[var(--radius-card)] bg-white p-6 ring-1 ring-line">
-              <h3 className="text-lg font-medium tracking-tight text-forest">{a.label}</h3>
-              {a.href ? (
-                <ArrowLink href={a.href} className="mt-4 text-forest">
-                  View
-                </ArrowLink>
-              ) : (
-                <p className="mt-3 text-sm text-muted">Available after the event.</p>
+      {/* ── WHO SHOULD ATTEND ── */}
+      <section aria-labelledby="attend" className="py-16 md:py-24" style={{ backgroundColor: "#111111" }}>
+        <div className="container-site">
+          <BlurReveal>
+            <div className="grid gap-10 md:grid-cols-2 md:gap-16">
+              <div>
+                <BlurRevealItem>
+                  <Eyebrow tone="lime" className="mb-4">Who should attend</Eyebrow>
+                  <h2 id="attend" className="sr-only">Who should attend</h2>
+                </BlurRevealItem>
+                <BlurRevealItem delay={0.1}>
+                  <p className="primarynormal text-pretty text-xl leading-relaxed text-white md:text-2xl">
+                    Researchers and academics, public institutions, industry and technical teams, funders and development
+                    organisations, students and emerging researchers.
+                  </p>
+                </BlurRevealItem>
+              </div>
+
+              {!isPast && (
+                <BlurRevealItem delay={0.2}>
+                  <div className="rounded-2xl bg-[#D5F673] p-7 text-[#111111] md:p-9">
+                    <span className="primarybold inline-block text-xs tracking-[0.14em] uppercase">Register</span>
+                    <p className="primarymedium mt-4 text-xl">Registration is required.</p>
+                    <EventFacts className="mt-5 space-y-2 primarynormal text-[#111111]/85 [&_svg]:!text-[#111111]" />
+                    <ButtonLink href={symposium.registerUrl} variant="dark" className="mt-7">
+                      Register to attend
+                    </ButtonLink>
+                    <p className="primarynormal mt-4 text-sm text-[#111111]/60">
+                      Registration deadline: {symposium.registrationDeadline}.
+                    </p>
+                  </div>
+                </BlurRevealItem>
               )}
-            </li>
-          ))}
-        </ul>
-      </Section>
-    </>
+            </div>
+          </BlurReveal>
+        </div>
+      </section>
+
+      {/* ── AFTER THE SYMPOSIUM ── */}
+      <section id="after" aria-labelledby="after-heading" className="py-16 md:py-24" style={{ backgroundColor: "#0d0d0d" }}>
+        <div className="container-site">
+          <BlurReveal>
+            <BlurRevealItem>
+              <div className="max-w-3xl">
+                <Eyebrow tone="lime" className="mb-4">After the Symposium</Eyebrow>
+                <h2
+                  id="after-heading"
+                  className="primarymedium text-balance text-3xl leading-[1.1] tracking-tight text-white md:text-5xl"
+                >
+                  Event archive
+                </h2>
+                <p className="primarynormal mt-5 text-pretty text-lg leading-relaxed text-white/75">
+                  After 30 September, this page becomes the permanent home for the event archive.
+                </p>
+              </div>
+            </BlurRevealItem>
+
+            <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {archive.map((a, i) => (
+                <BlurRevealItem key={a.id} delay={0.1 + i * 0.1}>
+                  <li
+                    id={a.href ? undefined : a.id}
+                    className="rounded-2xl bg-[#1a1a1a] p-6 ring-1 ring-white/10"
+                  >
+                    <h3 className="primarymedium text-lg tracking-tight text-white">{a.label}</h3>
+                    {a.href ? (
+                      <ArrowLink href={a.href} className="mt-4 text-[#D5F673]">
+                        View
+                      </ArrowLink>
+                    ) : (
+                      <p className="primarynormal mt-3 text-sm text-white/40">Available after the event.</p>
+                    )}
+                  </li>
+                </BlurRevealItem>
+              ))}
+            </ul>
+          </BlurReveal>
+        </div>
+      </section>
+    </div>
   );
 }
